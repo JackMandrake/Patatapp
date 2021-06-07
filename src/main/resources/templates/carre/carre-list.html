@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Compatibilities</title>
+</head>
+<body>
+
+<div>
+	<h2 th:if="${carreList!=null and carreList.isEmpty()}">Il n'y pas encore de carré!</h2>
+	<div th:if="${carreList!=null and !carreList.isEmpty()}">
+		<h2>List des carré :</h2>
+		<table>
+			<thead>
+				<tr>
+					<th>id</th>
+					<th>Surface</th>
+					<th>Type de sol</th>
+					<th>Exposition</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr th:each="carre : ${carreList}">
+					<td th:text="${carre.id}"></td>
+					<td th:text="${carre.surface}"></td>
+					<td th:text="${carre.TypeDeSol}"></td>
+					<td th:text="${carre.exposition}"></td>
+					<td><a th:href="@{/carre/{id}/delete (id=${carre.id})}">Supprimer</a></td>
+					<td><a th:href="@{/carre/{id}/update (id=${carre.id})}">Modifier</a></td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+	<p>
+		<a th:href="@{/carre/add}">Crée un nouveau carré</a>
+	</p>
+</div>
+
+</body>
+</html>
