@@ -1,13 +1,12 @@
 package com.example.patatapp.bo;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 
 import lombok.Data;
 import lombok.NoArgsConstructor;
+
+import java.util.List;
 
 @Data
 @NoArgsConstructor
@@ -21,5 +20,8 @@ public class Plante {
 
     @NotBlank
     private String name;
+
+    @OneToMany(mappedBy = "plante")
+    List<CarrePlante> carrePlanteList;
 
 }

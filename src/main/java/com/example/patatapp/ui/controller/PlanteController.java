@@ -10,11 +10,13 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 
 import javax.validation.Valid;
 import java.util.List;
 
 @Controller
+@RequestMapping("/potager/{potagerId}/carre/{carreId}/plante")
 public class PlanteController {
 
     private final PlanteService service;
@@ -24,14 +26,14 @@ public class PlanteController {
         this.service = service;
     }
 
-    @GetMapping("/plante/list")
-    public String getAll(Model model) {
-        List<Plante> planteList = service.findAll();
+    @GetMapping("/list")
+    public String getAll(@PathVariable Integer carreId, Model model) {
+        List<Plante> planteList = service.findAll(carreId);
         model.addAttribute("planteList", planteList);
         return "plante/plante-list";
     }
 
-    @GetMapping("/plante/add")
+    @GetMapping("/add")
     public String showCreatePlanteForm(Model model) {
         Plante plante = new Plante();
         plante.setName("nouvelle plante");
@@ -39,7 +41,7 @@ public class PlanteController {
         return "plante/plante-form";
     }
 
-    @PostMapping("/plante/valider")
+    @PostMapping("/valider")
     public String create(@Valid Plante plante, BindingResult result) {
         if (result.hasErrors()) {
             return "plante/plante-form";
@@ -49,20 +51,20 @@ public class PlanteController {
         }
     }
 
-    @GetMapping("/plante/{id}/delete")
+    @GetMapping("/{id}/delete")
     public String delete(@PathVariable Integer id) {
         service.deleteById(id);
         return "redirect:/plante/list";
     }
 
-    @GetMapping("/plante/{id}/update")
+    @GetMapping("/{id}/update")
     public String showUpdatePlanteForm(@PathVariable Integer id, Model model) {
         Plante plante = service.findById(id);
         model.addAttribute("plante", plante);
         return "plante/update-plante-form";
     }
 
-    @PostMapping("/plante/{id}/valider-update")
+    @PostMapping("/{id}/valider-update")
     public String update(@PathVariable Integer id, @Valid Plante plante, BindingResult result) {
         if (result.hasErrors()) {
             return "plante/update-plante-form";
