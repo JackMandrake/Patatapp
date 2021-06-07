@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Compatibilities</title>
+</head>
+<body>
+
+<div>
+	<h2 th:if="${potagerList!=null and potagerList.isEmpty()}">Il n'y pas encore de potager!</h2>
+	<div th:if="${potagerList!=null and !potagerList.isEmpty()}">
+		<h2>List des potager :</h2>
+		<table>
+			<thead>
+				<tr>
+					<th>id</th>
+					<th>Nom</th>
+					<th></th>
+					<th></th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr th:each="potager : ${potagerList}">
+					<td th:text="${potager.id}"></td>
+					<td th:text="${potager.name}"></td>
+					<td><a th:href="@{/potager/{id}/delete (id=${potager.id})}">Supprimer</a></td>
+					<td><a th:href="@{/potager/{id}/update (id=${potager.id})}">Modifier</a></td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+	<p>
+		<a th:href="@{/potager/add}">Crée un nouveau potager</a>
+	</p>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Compatibilities</title>
+</head>
+<body>
+
+<form th:action="@{/potager/{id}/valider-update (id=${potager.id})}" th:object="${potager}" method="post">
+	<label>Nom</label>
+	<input type="text" th:field="*{name}" title="nom du potager">
+	<span th:if="${#fields.hasErrors('name')}" th:errors="*{name}"></span>
+	<input type="submit" value="Modifier le potager">
+</form>
+
+</body>
+</html>
