@@ -4,6 +4,7 @@ import java.util.List;
 
 import javax.validation.Valid;
 
+import com.example.patatapp.bo.Potager;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -21,13 +22,13 @@ public class CarreService {
 		this.dao = dao;
 	}
 	
-	public List<Carre> findAll() {
-		return (List<Carre>) dao.findAll();
+	public List<Carre> findAll(Integer potagerId) {
+		return dao.findAllByPotagerId(potagerId);
 	}
 
-	public void create(@Valid Carre carre) {
+	public void create(Potager potager, Carre carre) {
+		potager.addCarre(carre);
 		dao.save(carre);
-		
 	}
 
 	public void deleteById(Integer id) {

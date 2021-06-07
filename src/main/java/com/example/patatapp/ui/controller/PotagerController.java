@@ -9,11 +9,13 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 
 import javax.validation.Valid;
 import java.util.List;
 
 @Controller
+@RequestMapping("/potager")
 public class PotagerController {
 
     private final PotagerService service;
@@ -23,14 +25,19 @@ public class PotagerController {
         this.service = service;
     }
 
-    @GetMapping("/potager/list")
+    @GetMapping("/{id}")
+    public String getOne(@PathVariable Integer id) {
+        return "redirect:/potager/" + id + "/carre/list";
+    }
+
+    @GetMapping("/list")
     public String getAll(Model model) {
         List<Potager> potagerList = service.findAll();
         model.addAttribute("potagerList", potagerList);
         return "potager/potager-list";
     }
 
-    @GetMapping("/potager/add")
+    @GetMapping("/add")
     public String showCreatePotagerForm(Model model) {
         Potager potager = new Potager();
         potager.setName("nouveau potager");
@@ -38,7 +45,7 @@ public class PotagerController {
         return "potager/potager-form";
     }
 
-    @PostMapping("/potager/valider")
+    @PostMapping("/valider")
     public String create(@Valid Potager potager, BindingResult result) {
         if (result.hasErrors()) {
             return "potager/potager-form";
@@ -48,20 +55,20 @@ public class PotagerController {
         }
     }
 
-    @GetMapping("/potager/{id}/delete")
+    @GetMapping("/{id}/delete")
     public String delete(@PathVariable Integer id) {
         service.deleteById(id);
         return "redirect:/potager/list";
     }
 
-    @GetMapping("/potager/{id}/update")
+    @GetMapping("/{id}/update")
     public String showUpdatePotagerForm(@PathVariable Integer id, Model model) {
         Potager potager = service.findById(id);
         model.addAttribute("potager", potager);
         return "potager/update-potager-form";
     }
 
-    @PostMapping("/potager/{id}/valider-update")
+    @PostMapping("/{id}/valider-update")
     public String update(@PathVariable Integer id, @Valid Potager potager, BindingResult result) {
         if (result.hasErrors()) {
             return "potager/update-potager-form";

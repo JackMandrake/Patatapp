@@ -6,7 +6,7 @@
 </head>
 <body>
 
-<form th:action="@{/carre/valider}" th:object="${carre}" method="post">
+<form th:action="@{/potager/{potagerId}/carre/valider (potagerId=${potagerId})}" th:object="${carre}" method="post">
 	<label>Surface</label>
 	<input type="number" th:field="*{surface}" title="surface">
 	<span th:if="${#fields.hasErrors('surface')}" th:errors="*{surface}"></span>

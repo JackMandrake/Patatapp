@@ -1,9 +1,6 @@
 package com.example.patatapp.bo;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 
 import lombok.Data;
@@ -18,7 +15,6 @@ public class Carre {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
 	
-	
 	private Integer surface;
 	
 	@NotBlank
@@ -26,6 +22,9 @@ public class Carre {
 	
 	@NotBlank
 	private String exposition;
+
+	@ManyToOne(cascade = CascadeType.ALL)
+	private Potager potager;
 	
 	
 }

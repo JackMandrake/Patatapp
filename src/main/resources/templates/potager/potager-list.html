@@ -17,6 +17,7 @@
 					<th>Nom</th>
 					<th></th>
 					<th></th>
+					<th></th>
 				</tr>
 			</thead>
 			<tbody>
@@ -25,6 +26,7 @@
 					<td th:text="${potager.name}"></td>
 					<td><a th:href="@{/potager/{id}/delete (id=${potager.id})}">Supprimer</a></td>
 					<td><a th:href="@{/potager/{id}/update (id=${potager.id})}">Modifier</a></td>
+					<td><a th:href="@{/potager/{id} (id=${potager.id})}">Détails</a></td>
 				</tr>
 			</tbody>
 		</table>

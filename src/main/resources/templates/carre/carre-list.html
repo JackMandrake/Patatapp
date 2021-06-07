@@ -23,7 +23,7 @@
 				<tr th:each="carre : ${carreList}">
 					<td th:text="${carre.id}"></td>
 					<td th:text="${carre.surface}"></td>
-					<td th:text="${carre.TypeDeSol}"></td>
+					<td th:text="${carre.typeDeSol}"></td>
 					<td th:text="${carre.exposition}"></td>
 					<td><a th:href="@{/carre/{id}/delete (id=${carre.id})}">Supprimer</a></td>
 					<td><a th:href="@{/carre/{id}/update (id=${carre.id})}">Modifier</a></td>
@@ -32,7 +32,7 @@
 		</table>
 	</div>
 	<p>
-		<a th:href="@{/carre/add}">Crée un nouveau carré</a>
+		<a th:href="@{/potager/{potagerId}/carre/add (potagerId=${potagerId})}">Crée un nouveau carré</a>
 	</p>
 </div>
 
