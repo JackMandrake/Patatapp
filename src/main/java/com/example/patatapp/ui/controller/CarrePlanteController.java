@@ -39,6 +39,7 @@ public class CarrePlanteController {
         model.addAttribute("carrePlanteList", carrePlanteList);
         model.addAttribute("potagerId", potagerId);
         model.addAttribute("carreId", carreId);
+        model.addAttribute("title", "Plantation");
 		return "carre-plante/carre-plante-list";
 	}
 	
@@ -50,6 +51,7 @@ public class CarrePlanteController {
         model.addAttribute("planteList", planteList);
         model.addAttribute("potagerId", potagerId);
         model.addAttribute("carreId", carreId);
+        model.addAttribute("title", "Plantation");
 		return "carre-plante/carre-plante-form";
 		
 	}
@@ -65,27 +67,4 @@ public class CarrePlanteController {
         }
     }
 
-//	@GetMapping("/{id}/delete")
-//    public String delete(@PathVariable Integer id) {
-//        carreService.deleteById(id);
-//        return "redirect:/carre/list";
-//    }
-//
-//    @GetMapping("/{id}/update")
-//    public String showUpdateCarreForm(@PathVariable Integer id, Model model) {
-//        Carre carre = carreService.findById(id);
-//        model.addAttribute("carre", carre);
-//        return "carre/update-carre-form";
-//    }
-//
-//    @PostMapping("/{id}/valider-update")
-//    public String update(@PathVariable Integer id, @Valid Carre carre, BindingResult result) {
-//        if (result.hasErrors()) {
-//            return "carre/update-carre-form";
-//        } else {
-//            carre.setId(id);
-//            carreService.update(carre);
-//            return "redirect:/carre/list";
-//        }
-//    }
 }
