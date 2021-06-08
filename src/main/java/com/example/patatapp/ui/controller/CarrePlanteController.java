@@ -35,7 +35,7 @@ public class CarrePlanteController {
 
 	@GetMapping("/list")
 	public String getAll(@PathVariable Integer potagerId, @PathVariable Integer carreId, Model model) {
-		List<CarrePlante> carrePlanteList = carrePlanteService.findAll();
+		List<CarrePlante> carrePlanteList = carrePlanteService.findAll(carreId);
         model.addAttribute("carrePlanteList", carrePlanteList);
         model.addAttribute("potagerId", potagerId);
         model.addAttribute("carreId", carreId);

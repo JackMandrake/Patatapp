@@ -25,7 +25,7 @@ public class CarrePlanteService {
 		dao.save(carrePlante);
 	}
 
-	public List<CarrePlante> findAll() {
-		return (List<CarrePlante>) dao.findAll();
+	public List<CarrePlante> findAll(Integer carreId) {
+		return dao.findAllByCarreId(carreId);
 	}
 }

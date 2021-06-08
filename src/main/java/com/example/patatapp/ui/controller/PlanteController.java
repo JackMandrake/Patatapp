@@ -25,7 +25,7 @@ public class PlanteController {
     public PlanteController(PlanteService service) {
         this.service = service;
         Plante plante = new Plante();
-        plante.setName("Patat");
+        plante.setName("Patates");
         this.service.create(plante);
         plante = new Plante();
         plante.setName("Poireaux");
