@@ -21,7 +21,7 @@ public class Potager {
     @NotBlank
     private String name;
 
-    @OneToMany(cascade = CascadeType.MERGE, fetch = FetchType.EAGER)
+    @OneToMany(cascade = CascadeType.MERGE)
     @JoinColumn(name = "potager_id")
     private List<Carre> carreList = new ArrayList<>();
 

@@ -34,7 +34,7 @@
 
 	<div class="container mt-5">
 
-		<form th:action="@{/carre/{id}/valider-update (id=${carre.id})}"
+		<form th:action="@{/potager/{potagerId}/carre/{id}/valider-update (potagerId=${potagerId}, id=${carre.id})}"
 			th:object="${carre}" method="post">
 			<div class="mb-3">
 				<label class="form-label">Surface</label> <input

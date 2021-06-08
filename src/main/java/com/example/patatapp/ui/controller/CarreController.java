@@ -84,20 +84,23 @@ public class CarreController {
     }
 
     @GetMapping("/{id}/update")
-    public String showUpdateCarreForm(@PathVariable Integer id, Model model) {
+    public String showUpdateCarreForm(@PathVariable Integer potagerId, @PathVariable Integer id, Model model) {
         Carre carre = carreService.findById(id);
         model.addAttribute("carre", carre);
+        model.addAttribute("potagerId", potagerId);
         return "carre/update-carre-form";
     }
 
     @PostMapping("/{id}/valider-update")
-    public String update(@PathVariable Integer id, @Valid Carre carre, BindingResult result) {
+    public String update(@PathVariable Integer potagerId, @PathVariable Integer id, @Valid Carre carre, BindingResult result) {
         if (result.hasErrors()) {
             return "carre/update-carre-form";
         } else {
             carre.setId(id);
+            Potager potager = potagerService.findById(potagerId);
+            carre.setPotager(potager);
             carreService.update(carre);
-            return "redirect:/carre/list";
+            return "redirect:/potager/" + potagerId + "/carre/list";
         }
     }
 }
