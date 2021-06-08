@@ -2,3 +2,9 @@
 .bg-nav-bar {
     background-color: #c7eb52;
 }
+
+footer {
+    width: 100%;
+    position: absolute;
+    bottom: 0;
+}
