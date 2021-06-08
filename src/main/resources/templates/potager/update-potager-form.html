@@ -14,6 +14,11 @@
 			<input class="form-control" type="text" th:field="*{name}" title="nom du potager">
 			<span th:if="${#fields.hasErrors('name')}" th:errors="*{name}"></span>
 		</div>
+		<div class="mb-3">
+			<label class="form-label">Surface (m²)</label>
+			<input class="form-control" type="number" th:field="*{surface}" title="surface du potager">
+			<span th:if="${#fields.hasErrors('surface')}" th:errors="*{surface}"></span>
+		</div>
 		<input class="btn btn-success" type="submit" value="Modifier le potager">
 	</form>
 

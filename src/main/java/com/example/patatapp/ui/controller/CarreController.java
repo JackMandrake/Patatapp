@@ -37,6 +37,7 @@ public class CarreController {
     public void init() {
         Potager potager = new Potager();
         potager.setName("Mon potager");
+        potager.setSurface(100);
         Potager createdPotager = this.potagerService.create(potager);
         Carre carre = new Carre();
         carre.setSurface(10);

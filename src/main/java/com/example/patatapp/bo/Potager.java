@@ -4,6 +4,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import javax.validation.constraints.Min;
 import javax.validation.constraints.NotBlank;
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -20,6 +21,9 @@ public class Potager {
 
     @NotBlank
     private String name;
+
+    @Min(1)
+    private int surface;
 
     @OneToMany(cascade = CascadeType.MERGE)
     @JoinColumn(name = "potager_id")

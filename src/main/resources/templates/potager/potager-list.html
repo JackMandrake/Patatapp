@@ -19,6 +19,7 @@
 			<tr>
 				<th scope="col">#</th>
 				<th scope="col">Nom</th>
+				<th scope="col">Surface</th>
 				<th scope="col"></th>
 				<th scope="col"></th>
 				<th scope="col"></th>
@@ -28,6 +29,7 @@
 			<tr th:each="potager : ${potagerList}">
 				<td th:text="${potager.id}"></td>
 				<td th:text="${potager.name}"></td>
+				<td th:text="${potager.surface}"></td>
 				<td><a class="btn btn-success" th:href="@{/potager/{id}/delete (id=${potager.id})}">Supprimer</a></td>
 				<td><a class="btn btn-success" th:href="@{/potager/{id}/update (id=${potager.id})}">Modifier</a></td>
 				<td><a class="btn btn-success" th:href="@{/potager/{id}/carre/list (id=${potager.id})}">Détails</a></td>
