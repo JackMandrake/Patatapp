@@ -78,9 +78,9 @@ public class CarreController {
     }
 	
 	@GetMapping("/{id}/delete")
-    public String delete(@PathVariable Integer id) {
+    public String delete(@PathVariable Integer potagerId, @PathVariable Integer id) {
         carreService.deleteById(id);
-        return "redirect:/carre/list";
+        return "redirect:/potager/" + potagerId + "/carre/list";
     }
 
     @GetMapping("/{id}/update")
