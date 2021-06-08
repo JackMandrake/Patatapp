@@ -3,6 +3,11 @@
     background-color: #c7eb52;
 }
 
+.titre-acceuil {
+	text-align: center
+}
+
+
 footer {
     width: 100%;
     position: absolute;
