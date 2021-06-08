@@ -1,6 +1,7 @@
 package com.example.patatapp.bo;
 
 import javax.persistence.*;
+import javax.validation.constraints.Min;
 import javax.validation.constraints.NotBlank;
 
 import lombok.Data;
@@ -17,7 +18,8 @@ public class Carre {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
-	
+
+	@Min(1)
 	private Integer surface;
 	
 	@NotBlank
