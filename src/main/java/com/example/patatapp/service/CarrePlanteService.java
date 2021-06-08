@@ -22,9 +22,6 @@ public class CarrePlanteService {
 		carre.getCarrePlanteList().add(carrePlante);
 		carrePlante.getPlante().getCarrePlanteList().add(carrePlante);
 		carrePlante.setId(new CarrePlantePK(carre.getId(), carrePlante.getPlante().getId()));
-		System.out.println("*******************************************");
-		System.out.println(carrePlante);
-		System.out.println("*******************************************");
 		dao.save(carrePlante);
 	}
 
