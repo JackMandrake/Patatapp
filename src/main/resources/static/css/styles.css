@@ -6,3 +6,10 @@
 .titre-acceuil {
 	text-align: center
 }
+
+
+footer {
+    width: 100%;
+    position: absolute;
+    bottom: 0;
+}

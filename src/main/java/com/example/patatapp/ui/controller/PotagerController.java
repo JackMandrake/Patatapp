@@ -29,6 +29,7 @@ public class PotagerController {
     public String getAll(Model model) {
         List<Potager> potagerList = service.findAll();
         model.addAttribute("potagerList", potagerList);
+        model.addAttribute("title", "Potager");
         return "potager/potager-list";
     }
 
@@ -37,6 +38,7 @@ public class PotagerController {
         Potager potager = new Potager();
         potager.setName("nouveau potager");
         model.addAttribute("potager", potager);
+        model.addAttribute("title", "Potager");
         return "potager/potager-form";
     }
 
@@ -60,6 +62,7 @@ public class PotagerController {
     public String showUpdatePotagerForm(@PathVariable Integer id, Model model) {
         Potager potager = service.findById(id);
         model.addAttribute("potager", potager);
+        model.addAttribute("title", "Potager");
         return "potager/update-potager-form";
     }
 
