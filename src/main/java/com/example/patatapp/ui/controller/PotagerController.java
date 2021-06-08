@@ -71,7 +71,9 @@ public class PotagerController {
         if (result.hasErrors()) {
             return "potager/update-potager-form";
         } else {
+            Potager potagerFromDb = service.findById(id);
             potager.setId(id);
+            potager.setCarreList(potagerFromDb.getCarreList());
             service.update(potager);
             return "redirect:/potager/list";
         }
