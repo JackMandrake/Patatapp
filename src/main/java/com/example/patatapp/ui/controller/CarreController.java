@@ -50,6 +50,7 @@ public class CarreController {
 		List<Carre> carreList = carreService.findAll(potagerId);
 		model.addAttribute("carreList", carreList);
         model.addAttribute("potagerId", potagerId);
+        model.addAttribute("potagerName", potagerService.findById(potagerId).getName());
 		return "carre/carre-list";
 	}
 	

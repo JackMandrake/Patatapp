@@ -25,11 +25,6 @@ public class PotagerController {
         this.service = service;
     }
 
-    @GetMapping("/{id}")
-    public String getOne(@PathVariable Integer id) {
-        return "redirect:/potager/" + id + "/carre/list";
-    }
-
     @GetMapping("/list")
     public String getAll(Model model) {
         List<Potager> potagerList = service.findAll();
