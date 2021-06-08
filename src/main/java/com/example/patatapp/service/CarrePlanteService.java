@@ -17,7 +17,19 @@ public class CarrePlanteService {
 		this.dao = dao;
 	}
 
-	public void create(Carre carre, CarrePlante carrePlante) {
+	public void create(Carre carre, CarrePlante carrePlante) throws BllException {
+
+
+		// en cm²
+		int occupiedSurface = carre.getCarrePlanteList().stream()
+				.map(cp -> cp.getPlante().getSurface() * cp.getQuantite()).mapToInt(Integer::intValue).sum();
+		//en cm²
+		int availableSurface = carre.getSurface() * 10000 - occupiedSurface;
+		if ((carrePlante.getPlante().getSurface() * carrePlante.getQuantite()) > availableSurface) {
+			throw new BllException("La surface disponible dans le carré est insufissante (" + availableSurface + " cm²)");
+		}
+
+
 		carrePlante.setCarre(carre);
 		carre.getCarrePlanteList().add(carrePlante);
 		carrePlante.getPlante().getCarrePlanteList().add(carrePlante);

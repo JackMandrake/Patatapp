@@ -3,6 +3,7 @@ package com.example.patatapp.ui.controller;
 import com.example.patatapp.bo.Carre;
 import com.example.patatapp.bo.CarrePlante;
 import com.example.patatapp.bo.Plante;
+import com.example.patatapp.service.BllException;
 import com.example.patatapp.service.CarrePlanteService;
 import com.example.patatapp.service.CarreService;
 import com.example.patatapp.service.PlanteService;
@@ -10,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
+import org.springframework.validation.FieldError;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -47,24 +49,35 @@ public class CarrePlanteController {
 	public String showCreateCarrePlanteForm(@PathVariable Integer potagerId, @PathVariable Integer carreId, Model model) {
 		CarrePlante carrePlante = new CarrePlante();
         model.addAttribute("carrePlante", carrePlante);
-        List<Plante> planteList = planteService.findAll();
-        model.addAttribute("planteList", planteList);
-        model.addAttribute("potagerId", potagerId);
-        model.addAttribute("carreId", carreId);
-        model.addAttribute("title", "Plantation");
+        fillUpTheModel(potagerId, carreId, model);
 		return "carre-plante/carre-plante-form";
 		
 	}
 	
 	@PostMapping("/valider")
-    public String create(@PathVariable Integer potagerId, @PathVariable Integer carreId, @Valid CarrePlante carrePlante, BindingResult result) {
+    public String create(@PathVariable Integer potagerId, @PathVariable Integer carreId, @Valid CarrePlante carrePlante, BindingResult result, Model model) {
         if (result.hasErrors()) {
+            fillUpTheModel(potagerId, carreId, model);
             return "carre-plante/carre-plante-form";
         } else {
             Carre carre = carreService.findById(carreId);
-            carrePlanteService.create(carre, carrePlante);
+            try {
+                carrePlanteService.create(carre, carrePlante);
+            } catch (BllException e) {
+                result.addError(new FieldError("carrePlante", "quantite", e.getMessage()));
+                fillUpTheModel(potagerId, carreId, model);
+                return "carre-plante/carre-plante-form";
+            }
             return "redirect:/potager/" + potagerId + "/carre/" + carreId + "/plantation/list";
         }
+    }
+
+    private void fillUpTheModel(Integer potagerId, Integer carreId, Model model) {
+        List<Plante> planteList = planteService.findAll();
+        model.addAttribute("planteList", planteList);
+        model.addAttribute("potagerId", potagerId);
+        model.addAttribute("carreId", carreId);
+        model.addAttribute("title", "Plantation");
     }
 
 }

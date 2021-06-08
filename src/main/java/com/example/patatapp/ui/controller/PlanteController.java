@@ -26,12 +26,15 @@ public class PlanteController {
         this.service = service;
         Plante plante = new Plante();
         plante.setName("Patates");
+        plante.setSurface(10);
         this.service.create(plante);
         plante = new Plante();
         plante.setName("Poireaux");
+        plante.setSurface(20);
         this.service.create(plante);
         plante = new Plante();
         plante.setName("Choux");
+        plante.setSurface(30);
         this.service.create(plante);
     }
 
@@ -39,6 +42,7 @@ public class PlanteController {
     public String getAll(Model model) {
         List<Plante> planteList = service.findAll();
         model.addAttribute("planteList", planteList);
+        model.addAttribute("title", "Plante");
         return "plante/plante-list";
     }
 
@@ -47,6 +51,7 @@ public class PlanteController {
         Plante plante = new Plante();
         plante.setName("nouvelle plante");
         model.addAttribute("plante", plante);
+        model.addAttribute("title", "Plante");
         return "plante/plante-form";
     }
 
@@ -70,6 +75,7 @@ public class PlanteController {
     public String showUpdatePlanteForm(@PathVariable Integer id, Model model) {
         Plante plante = service.findById(id);
         model.addAttribute("plante", plante);
+        model.addAttribute("title", "Plante");
         return "plante/update-plante-form";
     }
 
@@ -83,7 +89,5 @@ public class PlanteController {
             return "redirect:/plante/list";
         }
     }
-
-
 
 }

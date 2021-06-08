@@ -1,43 +1,33 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
-<head>
-<meta charset="UTF-8">
-<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
-	<link rel="stylesheet" th:href="@{/css/styles.css}">
-<title>Plante</title>
-</head>
+
+<head th:replace="fragments/head :: head"><title></title></head>
+
 <body>
-<nav class="navbar navbar-expand-lg navbar-light bg-nav-bar">
-	<div class="container-fluid">
-		<a class="navbar-brand" href="/">Accueil</a>
-		<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-			<span class="navbar-toggler-icon"></span>
-		</button>
-		<div class="collapse navbar-collapse" id="navbarSupportedContent">
-			<ul class="navbar-nav me-auto mb-2 mb-lg-0">
-				<li class="nav-item">
-					<a class="nav-link active" aria-current="page" href="/potager/list">Mes Potagers</a>
-				</li>
-				<li class="nav-item">
-					<a class="nav-link" href="/plante/list">Mes Plantes</a>
-				</li>
-			</ul>
-		</div>
-	</div>
-</nav>
+
+<header th:replace="fragments/header :: header">header</header>
 
 <div class="container mt-5">
 
-
-<form th:action="@{/plante/valider}" th:object="${plante}" method="post">
-	<div class="mb-3">
-		<label class="form-label" >Nom</label>
-		<input class="form-control" type="text" th:field="*{name}" title="nom de la plante">
-		<span th:if="${#fields.hasErrors('name')}" th:errors="*{name}"></span>
+	<form th:action="@{/plante/valider}" th:object="${plante}" method="post">
+		<div class="mb-3">
+			<label class="form-label" >Nom</label>
+			<input class="form-control" type="text" th:field="*{name}" title="nom de la plante">
+			<span th:if="${#fields.hasErrors('name')}" th:errors="*{name}"></span>
+		</div>
+		<div class="mb-3">
+			<label class="form-label" >Surface (cm²)</label>
+			<input class="form-control" type="text" th:field="*{surface}" title="surface de la plante">
+			<span th:if="${#fields.hasErrors('surface')}" th:errors="*{surface}"></span>
+		</div>
 		<input  class="btn btn-success" type="submit" value="Ajouter une nouvelle plante">
-</form>
+	</form>
 
-	</div>
+</div>
+
+<footer th:replace="fragments/footer :: footer">footer</footer>
+
+<div th:replace="fragments/script :: script">script</div>
 
 </body>
 </html>

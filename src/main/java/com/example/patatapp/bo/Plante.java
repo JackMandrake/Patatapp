@@ -1,6 +1,7 @@
 package com.example.patatapp.bo;
 
 import javax.persistence.*;
+import javax.validation.constraints.Min;
 import javax.validation.constraints.NotBlank;
 
 import lombok.Data;
@@ -13,7 +14,6 @@ import java.util.List;
 @NoArgsConstructor
 @Entity
 public class Plante {
-
 	
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -22,15 +22,10 @@ public class Plante {
     @NotBlank
     private String name;
 
+    @Min(1)
+    private int surface;
+
     @OneToMany(mappedBy = "plante")
     List<CarrePlante> carrePlanteList = new ArrayList<>();
 
-    @Override
-    public String toString() {
-        return "Plante{" +
-                "id=" + id +
-                ", name='" + name + '\'' +
-                ", carrePlanteList.size=" + carrePlanteList.size() +
-                '}';
-    }
 }
