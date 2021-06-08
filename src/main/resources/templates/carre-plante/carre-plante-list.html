@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Compatibilities</title>
+</head>
+<body>
+
+<div>
+	<h2 th:if="${carrePlanteList!=null and carrePlanteList.isEmpty()}">Il n'y pas encore de plantation!</h2>
+	<div th:if="${carrePlanteList!=null and !carrePlanteList.isEmpty()}">
+		<h2>List des plantation :</h2>
+		<table>
+			<thead>
+				<tr>
+					<th>quantité</th>
+					<th>Plante</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr th:each="carrePlante : ${carrePlanteList}">
+					<td th:text="${carrePlante.quantite}"></td>
+					<td th:text="${carrePlante.plante.name}"></td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+	<p>
+		<a th:href="@{/potager/{potagerId}/carre/{carreId}/plantation/add (potagerId=${potagerId}, carreId=${carreId})}">Crée un nouveau plantation</a>
+	</p>
+</div>
+
+</body>
+</html>

@@ -2,6 +2,7 @@ package com.example.patatapp.service;
 
 import java.util.List;
 
+import javax.transaction.Transactional;
 import javax.validation.Valid;
 
 import com.example.patatapp.bo.Potager;

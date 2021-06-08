@@ -6,6 +6,7 @@ import javax.validation.constraints.NotBlank;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Data
@@ -22,6 +23,14 @@ public class Plante {
     private String name;
 
     @OneToMany(mappedBy = "plante")
-    List<CarrePlante> carrePlanteList;
+    List<CarrePlante> carrePlanteList = new ArrayList<>();
 
+    @Override
+    public String toString() {
+        return "Plante{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", carrePlanteList.size=" + carrePlanteList.size() +
+                '}';
+    }
 }

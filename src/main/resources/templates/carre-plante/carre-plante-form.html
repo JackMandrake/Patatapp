@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Compatibilities</title>
+</head>
+<body>
+
+<form th:action="@{/potager/{potagerId}/carre/{carreId}/plantation/valider (potagerId=${potagerId}, carreId=${carreId})}" th:object="${carrePlante}" method="post">
+	<label for="relation">Plante</label>
+	<select id="relation" th:field="*{plante}">
+		<option th:each="plante : ${planteList}" th:value="${plante.id}" th:text="${plante.name}">
+		</option>
+	</select>
+	<label>Quantité</label>
+	<input type="number" th:field="*{quantite}" title="surface">
+	<span th:if="${#fields.hasErrors('quantite')}" th:errors="*{quantite}"></span>
+	<input type="submit" value="Planter">
+</form>
+
+</body>
+</html>

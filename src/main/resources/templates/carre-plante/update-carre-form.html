@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Compatibilities</title>
+</head>
+<body>
+
+<form th:action="@{/carre/{id}/valider-update (id=${carre.id})}" th:object="${carre}" method="post">
+	<label>Surface</label>
+	<input type="number" th:field="*{surface}" title="surface">
+	<span th:if="${#fields.hasErrors('surface')}" th:errors="*{name}"></span>
+	<label>Type de sol</label>
+	<input type="text" th:field="*{typeDeSol}" title="Type de sol">
+	<span th:if="${#fields.hasErrors('typeDeSol')}" th:errors="*{typeDeSol}"></span>
+	<label>Exposition</label>
+	<input type="text" th:field="*{exposition}" title="expositio">
+	<span th:if="${#fields.hasErrors('exposition')}" th:errors="*{exposition}"></span>
+	<input type="submit" value="Modifier le carré">
+</form>
+
+</body>
+</html>

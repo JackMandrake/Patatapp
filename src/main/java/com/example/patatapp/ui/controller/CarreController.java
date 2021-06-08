@@ -2,6 +2,7 @@ package com.example.patatapp.ui.controller;
 
 import java.util.List;
 
+import javax.transaction.Transactional;
 import javax.validation.Valid;
 
 import com.example.patatapp.bo.Potager;
@@ -30,9 +31,21 @@ public class CarreController {
 	public CarreController(CarreService carreService, PotagerService potagerService) {
 		this.carreService = carreService;
         this.potagerService = potagerService;
+        init();
     }
-	
-	@GetMapping("/list")
+
+    public void init() {
+        Potager potager = new Potager();
+        potager.setName("Mon potager");
+        Potager createdPotager = this.potagerService.create(potager);
+        Carre carre = new Carre();
+        carre.setSurface(10);
+        carre.setExposition("sud");
+        carre.setTypeDeSol("terreu");
+        this.carreService.create(createdPotager, carre);
+    }
+
+    @GetMapping("/list")
 	public String getAll(@PathVariable Integer potagerId, Model model) {
 		List<Carre> carreList = carreService.findAll(potagerId);
 		model.addAttribute("carreList", carreList);

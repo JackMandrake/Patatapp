@@ -16,7 +16,7 @@ import javax.validation.Valid;
 import java.util.List;
 
 @Controller
-@RequestMapping("/potager/{potagerId}/carre/{carreId}/plante")
+@RequestMapping("/plante")
 public class PlanteController {
 
     private final PlanteService service;
@@ -24,11 +24,20 @@ public class PlanteController {
     @Autowired
     public PlanteController(PlanteService service) {
         this.service = service;
+        Plante plante = new Plante();
+        plante.setName("Patat");
+        this.service.create(plante);
+        plante = new Plante();
+        plante.setName("Poireaux");
+        this.service.create(plante);
+        plante = new Plante();
+        plante.setName("Choux");
+        this.service.create(plante);
     }
 
     @GetMapping("/list")
-    public String getAll(@PathVariable Integer carreId, Model model) {
-        List<Plante> planteList = service.findAll(carreId);
+    public String getAll(Model model) {
+        List<Plante> planteList = service.findAll();
         model.addAttribute("planteList", planteList);
         return "plante/plante-list";
     }

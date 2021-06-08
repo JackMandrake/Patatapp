@@ -6,6 +6,7 @@ import javax.validation.constraints.NotBlank;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Data
@@ -25,11 +26,20 @@ public class Carre {
 	@NotBlank
 	private String exposition;
 
-	@ManyToOne(cascade = CascadeType.ALL)
+	@ManyToOne(cascade = CascadeType.MERGE)
 	private Potager potager;
 
 	@OneToMany(mappedBy = "carre")
-	List<CarrePlante> carrePlanteList;
-	
-	
+	List<CarrePlante> carrePlanteList = new ArrayList<>();
+
+	@Override
+	public String toString() {
+		return "Carre{" +
+				"id=" + id +
+				", surface=" + surface +
+				", typeDeSol='" + typeDeSol + '\'' +
+				", exposition='" + exposition + '\'' +
+				", carrePlanteList.size=" + carrePlanteList.size() +
+				'}';
+	}
 }

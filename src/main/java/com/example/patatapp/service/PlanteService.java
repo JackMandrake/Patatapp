@@ -18,9 +18,8 @@ public class PlanteService {
         this.dao = dao;
     }
 
-    public List<Plante> findAll(Integer carreId) {
+    public List<Plante> findAll() {
         return (List<Plante>) dao.findAll();
-//        return dao.findAllByCarreId(carreId);
     }
 
     public void create(Plante plante) {

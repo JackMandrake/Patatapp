@@ -21,8 +21,8 @@ public class PotagerService {
         return (List<Potager>) dao.findAll();
     }
 
-    public void create(Potager potager) {
-        dao.save(potager);
+    public Potager create(Potager potager) {
+        return dao.save(potager);
     }
 
     public void deleteById(Integer id) {

@@ -24,4 +24,14 @@ public class CarrePlante {
     Plante plante;
 
     private int quantite;
+
+    @Override
+    public String toString() {
+        return "CarrePlante{" +
+                "id=" + id +
+                ", carre=" + carre +
+                ", plante=" + plante +
+                ", quantite=" + quantite +
+                '}';
+    }
 }
