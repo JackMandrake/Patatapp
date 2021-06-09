@@ -22,7 +22,10 @@ public class PlanteService {
         return (List<Plante>) dao.findAll();
     }
 
-    public void create(Plante plante) {
+    public void create(Plante plante) throws BllException {
+        if (findAll().contains(plante)) {
+            throw new BllException("Cette plante existe déja!");
+        }
         dao.save(plante);
     }
 

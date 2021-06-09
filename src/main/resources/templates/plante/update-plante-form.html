@@ -17,7 +17,7 @@
 		</div>
 		<div class="mb-3">
 			<label  class="form-label">Surface (cm²)</label>
-			<input   class="form-control" type="text" th:field="*{surface}" title="surface de la plante">
+			<input   class="form-control" type="number" th:field="*{surface}" title="surface de la plante">
 			<span th:if="${#fields.hasErrors('surface')}" th:errors="*{surface}"></span>
 		</div>
 		<input  class="btn btn-success" type="submit" value="Modifier la plante">

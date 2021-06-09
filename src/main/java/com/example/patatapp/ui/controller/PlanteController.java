@@ -2,11 +2,13 @@ package com.example.patatapp.ui.controller;
 
 
 import com.example.patatapp.bo.Plante;
+import com.example.patatapp.service.BllException;
 import com.example.patatapp.service.PlanteService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
+import org.springframework.validation.FieldError;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -22,7 +24,7 @@ public class PlanteController {
     private final PlanteService service;
 
     @Autowired
-    public PlanteController(PlanteService service) {
+    public PlanteController(PlanteService service) throws BllException {
         this.service = service;
         Plante plante = new Plante();
         plante.setName("Patates");
@@ -60,7 +62,12 @@ public class PlanteController {
         if (result.hasErrors()) {
             return "plante/plante-form";
         } else {
-            service.create(plante);
+            try {
+                service.create(plante);
+            } catch (BllException e) {
+                result.addError(new FieldError("plante", "name", e.getMessage()));
+                return "plante/plante-form";
+            }
             return "redirect:/plante/list";
         }
     }
