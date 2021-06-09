@@ -1,0 +1,42 @@
+/* Montserrat Font */
+@import
+	url("https://fonts.googleapis.com/css2?family=Montserrat:wght@300;500;700;800&display=swap")
+	;
+
+/* Global Style */
+* {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+}
+
+h1 {
+	font-size: 62.5%;
+	font-family: "Montserrat", sans-serif;
+	width: 100vw;
+	overflow: hidden;
+}
+
+#myVideo {
+	right: 0;
+	bottom: 0;
+	width: 100%;
+	min-height: 100%;
+}
+
+.transparent {
+	line-height: 80%;
+	text-transform: uppercase;
+	font-weight: 800;
+	text-align: center;
+	top: 3.5rem;
+	background-color: white;
+	font-size: 30vh;
+	width: 100%;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	position: fixed;
+	bottom: 0;
+	mix-blend-mode: screen;
+}
