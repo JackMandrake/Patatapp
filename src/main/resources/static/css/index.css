@@ -22,6 +22,8 @@ h1 {
 	bottom: 0;
 	width: 100%;
 	min-height: 100%;
+	position: fixed;
+	top: 100px;
 }
 
 .transparent {
@@ -29,7 +31,7 @@ h1 {
 	text-transform: uppercase;
 	font-weight: 800;
 	text-align: center;
-	top: 3.5rem;
+	top: 100px;
 	background-color: white;
 	font-size: 30vh;
 	width: 100%;
