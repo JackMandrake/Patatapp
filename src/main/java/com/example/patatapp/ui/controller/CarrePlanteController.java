@@ -2,6 +2,7 @@ package com.example.patatapp.ui.controller;
 
 import com.example.patatapp.bo.Carre;
 import com.example.patatapp.bo.CarrePlante;
+import com.example.patatapp.bo.CarrePlantePK;
 import com.example.patatapp.bo.Plante;
 import com.example.patatapp.service.BllException;
 import com.example.patatapp.service.CarrePlanteService;
@@ -70,6 +71,13 @@ public class CarrePlanteController {
             }
             return "redirect:/potager/" + potagerId + "/carre/" + carreId + "/plantation/list";
         }
+    }
+
+    @GetMapping("/{planteId}/delete")
+    public String delete(@PathVariable Integer potagerId, @PathVariable Integer carreId, @PathVariable Integer planteId) {
+        CarrePlantePK carrePlantePK = new CarrePlantePK(carreId, planteId);
+        carrePlanteService.deleteById(carrePlantePK);
+        return "redirect:/potager/" + potagerId + "/carre/" + carreId + "/plantation/list";
     }
 
     private void fillUpTheModel(Integer potagerId, Integer carreId, Model model) {

@@ -40,4 +40,8 @@ public class CarrePlanteService {
 	public List<CarrePlante> findAll(Integer carreId) {
 		return dao.findAllByCarreId(carreId);
 	}
+
+	public void deleteById(CarrePlantePK id) {
+		dao.deleteById(id);
+	}
 }
