@@ -3,11 +3,6 @@
     background-color: #c7eb52;
 }
 
-.titre-acceuil {
-	text-align: center
-}
-
-
 footer {
     width: 100%;
     position: fixed;
@@ -16,11 +11,24 @@ footer {
 
 .logo {
 	width: 50px;
-	
 }
 
 .my-nav-bar {
-	height: 70px;
-
+	min-height: 70px;
 }
 
+.container {
+    margin-bottom: 100px;
+}
+
+/*html, body {*/
+/*    height: 100%;*/
+/*    margin: 0; padding: 0;*/
+/*}*/
+/*body {*/
+/*    display : table;*/
+/*    width: 100%;*/
+/*}*/
+/*footer {*/
+/*    display : table-row;*/
+/*}*/
