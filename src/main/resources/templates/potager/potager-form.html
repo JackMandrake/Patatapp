@@ -34,10 +34,17 @@
 			<input class="form-control" type="text" th:field="*{zipCode}" title="code postal">
 			<span th:if="${#fields.hasErrors('zipCode')}" th:errors="*{zipCode}"></span>
 		</div>
+<!--		<div class="mb-3">-->
+<!--			<label class="form-label">Ville</label>-->
+<!--			<input class="form-control" type="text" th:field="*{city}" title="ville">-->
+<!--			<span th:if="${#fields.hasErrors('city')}" th:errors="*{city}"></span>-->
+<!--		</div>-->
 		<div class="mb-3">
-			<label class="form-label">Ville</label>
-			<input class="form-control" type="text" th:field="*{city}" title="ville">
-			<span th:if="${#fields.hasErrors('city')}" th:errors="*{city}"></span>
+			<label for="city" class="form-label">Ville</label>
+			<select id="city" th:field="*{city}">
+				<option th:each="cit : ${cities}" th:value="${cit}" th:text="${cit}">
+				</option>
+			</select>
 		</div>
 		<input class="btn btn-success" type="submit" value="Crée un nouveau potager">
 	</form>
