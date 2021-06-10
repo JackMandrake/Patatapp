@@ -20,6 +20,8 @@
 				<th scope="col">#</th>
 				<th scope="col">Nom</th>
 				<th scope="col">Surface</th>
+				<th scope="col">Code postale</th>
+				<th scope="col">Surface</th>
 				<th scope="col"></th>
 				<th scope="col"></th>
 				<th scope="col"></th>
@@ -30,6 +32,8 @@
 				<td th:text="${potager.id}"></td>
 				<td th:text="${potager.name}"></td>
 				<td th:text="${potager.surface}"></td>
+				<td th:text="${potager.zipCode}"></td>
+				<td th:text="${potager.city}"></td>
 				<td><a class="btn btn-success" th:href="@{/potager/{id}/delete (id=${potager.id})}">Supprimer</a></td>
 				<td><a class="btn btn-success" th:href="@{/potager/{id}/update (id=${potager.id})}">Modifier</a></td>
 				<td><a class="btn btn-success" th:href="@{/potager/{id}/carre/list (id=${potager.id})}">Détails</a></td>

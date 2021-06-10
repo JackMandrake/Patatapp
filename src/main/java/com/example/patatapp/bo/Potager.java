@@ -25,6 +25,10 @@ public class Potager {
     @Min(1)
     private int surface;
 
+    private String zipCode;
+
+    private String city;
+
     @OneToMany(cascade = CascadeType.MERGE)
     @JoinColumn(name = "potager_id")
     private List<Carre> carreList = new ArrayList<>();
