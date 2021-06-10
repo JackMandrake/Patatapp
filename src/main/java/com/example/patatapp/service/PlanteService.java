@@ -3,6 +3,7 @@ package com.example.patatapp.service;
 
 import com.example.patatapp.bo.Plante;
 import com.example.patatapp.dao.PlanteDaoInterface;
+import org.hibernate.exception.ConstraintViolationException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -29,8 +30,12 @@ public class PlanteService {
         dao.save(plante);
     }
 
-    public void deleteById(Integer id) {
-        dao.deleteById(id);
+    public void deleteById(Integer id) throws BllException {
+        try {
+            dao.deleteById(id);
+        } catch (Exception e) {
+            throw new BllException("Cette plante est en cours de culture");
+        }
     }
 
     public Plante findById(Integer id) {

@@ -44,18 +44,22 @@ public class PatatappApplication {
 
             // Creation des potager avec carré
             Potager potager1 = new Potager();
-            potager1.setName("Mon potager");
+            potager1.setName("Plein air");
+            potager1.setZipCode("2900");
+            potager1.setCity("Quimper");
             potager1.setSurface(100);
             potagerDao.save(potager1);
             Carre carre11 = new Carre();
             carre11.setSurface(10);
             carre11.setExposition("sud");
-            carre11.setTypeDeSol("terreu");
+            carre11.setTypeDeSol("terreux");
             potager1.addCarre(carre11);
             carreDao.save(carre11);
 
             Potager potager2 = new Potager();
-            potager2.setName("Ton potager");
+            potager2.setName("Sous serre");
+            potager2.setZipCode("22110");
+            potager2.setCity("Rostrenen");
             potager2.setSurface(50);
             potagerDao.save(potager2);
             Carre carre21 = new Carre();
@@ -66,8 +70,8 @@ public class PatatappApplication {
             carreDao.save(carre21);
             Carre carre22 = new Carre();
             carre22.setSurface(10);
-            carre22.setExposition("niord");
-            carre22.setTypeDeSol("arileux");
+            carre22.setExposition("est");
+            carre22.setTypeDeSol("argileux");
             potager2.addCarre(carre22);
             carreDao.save(carre22);
 

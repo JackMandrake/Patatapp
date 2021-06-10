@@ -19,7 +19,6 @@ public class CarrePlanteService {
 
 	public void create(Carre carre, CarrePlante carrePlante) throws BllException {
 
-
 		// en cm²
 		int occupiedSurface = carre.getCarrePlanteList().stream()
 				.map(cp -> cp.getPlante().getSurface() * cp.getQuantite()).mapToInt(Integer::intValue).sum();
@@ -28,7 +27,6 @@ public class CarrePlanteService {
 		if ((carrePlante.getPlante().getSurface() * carrePlante.getQuantite()) > availableSurface) {
 			throw new BllException("La surface disponible dans le carré est insufissante (" + availableSurface + " cm²)");
 		}
-
 
 		carrePlante.setCarre(carre);
 		carre.getCarrePlanteList().add(carrePlante);

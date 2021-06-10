@@ -7,7 +7,12 @@
 
 <header th:replace="fragments/header :: header">header</header>
 
-<div class="container">
+<div class="container my-container">
+
+	<div th:if="${param.error}" class="alert alert-danger alert-dismissible fade show" role="alert">
+		Il y a eu une erreur lors de la suppression.
+		<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+	</div>
 	
 	<a class="btn btn-success mt-5" th:href="@{/plante/add}">Ajouter une nouvelle plante</a>
 
