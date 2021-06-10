@@ -79,6 +79,25 @@ public class PotagerController {
         }
     }
 
+    @GetMapping("/overview")
+    public String overview(Model model) {
+        List<Potager> potagerList = service.findAll();
+        model.addAttribute("potagerList", potagerList);
+        model.addAttribute("potager", null);
+        model.addAttribute("title", "Potager");
+        return "potager/potager-overview";
+    }
+
+    @GetMapping("/{potagerId}/overview")
+    public String potagerOverview(@PathVariable Integer potagerId, Model model) {
+        List<Potager> potagerList = service.findAll();
+        Potager potager = service.findById(potagerId);
+        model.addAttribute("potagerList", potagerList);
+        model.addAttribute("potager", potager);
+        model.addAttribute("title", "Potager");
+        return "potager/potager-overview";
+    }
+
 
 
 }

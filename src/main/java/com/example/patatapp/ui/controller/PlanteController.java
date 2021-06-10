@@ -24,20 +24,8 @@ public class PlanteController {
     private final PlanteService service;
 
     @Autowired
-    public PlanteController(PlanteService service) throws BllException {
+    public PlanteController(PlanteService service) {
         this.service = service;
-        Plante plante = new Plante();
-        plante.setName("Patates");
-        plante.setSurface(10);
-        this.service.create(plante);
-        plante = new Plante();
-        plante.setName("Poireaux");
-        plante.setSurface(20);
-        this.service.create(plante);
-        plante = new Plante();
-        plante.setName("Choux");
-        plante.setSurface(30);
-        this.service.create(plante);
     }
 
     @GetMapping("/list")

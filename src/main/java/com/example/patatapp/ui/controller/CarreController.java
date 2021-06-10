@@ -29,22 +29,9 @@ public class CarreController {
     private final PotagerService potagerService;
 	
 	@Autowired
-	public CarreController(CarreService carreService, PotagerService potagerService) throws BllException {
+	public CarreController(CarreService carreService, PotagerService potagerService) {
 		this.carreService = carreService;
         this.potagerService = potagerService;
-        init();
-    }
-
-    public void init() throws BllException {
-        Potager potager = new Potager();
-        potager.setName("Mon potager");
-        potager.setSurface(100);
-        Potager createdPotager = this.potagerService.create(potager);
-        Carre carre = new Carre();
-        carre.setSurface(10);
-        carre.setExposition("sud");
-        carre.setTypeDeSol("terreu");
-        this.carreService.create(createdPotager, carre);
     }
 
     @GetMapping("/list")

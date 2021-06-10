@@ -19,6 +19,7 @@
 				<tr>
 					<th scope="col">id</th>
 					<th scope="col">Nom</th>
+					<th scope="col">Surface (cm²)</th>
 					<th scope="col"></th>
 					<th scope="col"></th>
 				</tr>
@@ -27,6 +28,7 @@
 				<tr th:each="plante : ${planteList}">
 					<td th:text="${plante.id}"></td>
 					<td th:text="${plante.name}"></td>
+					<td th:text="${plante.surface}"></td>
 					<td><a class="btn btn-success" th:href="@{/plante/{id}/delete (id=${plante.id})}">Supprimer</a></td>
 					<td><a class="btn btn-success" th:href="@{/plante/{id}/update (id=${plante.id})}">Modifier</a></td>
 				</tr>

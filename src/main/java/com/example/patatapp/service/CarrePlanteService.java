@@ -44,4 +44,12 @@ public class CarrePlanteService {
 	public void deleteById(CarrePlantePK id) {
 		dao.deleteById(id);
 	}
+
+	public CarrePlante findById(CarrePlantePK carrePlantePK) {
+		return dao.findById(carrePlantePK).orElse(null);
+	}
+
+	public void update(CarrePlante carrePlante) {
+		dao.save(carrePlante);
+	}
 }

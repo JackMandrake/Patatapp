@@ -1,9 +1,6 @@
 package com.example.patatapp.ui.controller;
 
-import com.example.patatapp.bo.Carre;
-import com.example.patatapp.bo.CarrePlante;
-import com.example.patatapp.bo.CarrePlantePK;
-import com.example.patatapp.bo.Plante;
+import com.example.patatapp.bo.*;
 import com.example.patatapp.service.BllException;
 import com.example.patatapp.service.CarrePlanteService;
 import com.example.patatapp.service.CarreService;
@@ -52,7 +49,6 @@ public class CarrePlanteController {
         model.addAttribute("carrePlante", carrePlante);
         fillUpTheModel(potagerId, carreId, model);
 		return "carre-plante/carre-plante-form";
-		
 	}
 	
 	@PostMapping("/valider")
@@ -78,6 +74,27 @@ public class CarrePlanteController {
         CarrePlantePK carrePlantePK = new CarrePlantePK(carreId, planteId);
         carrePlanteService.deleteById(carrePlantePK);
         return "redirect:/potager/" + potagerId + "/carre/" + carreId + "/plantation/list";
+    }
+
+    @GetMapping("/{planteId}/update")
+    public String showUpdateCarrePlanteForm(@PathVariable Integer potagerId, @PathVariable Integer carreId, @PathVariable Integer planteId, Model model) {
+        CarrePlantePK carrePlantePK = new CarrePlantePK(carreId, planteId);
+        CarrePlante carrePlante = carrePlanteService.findById(carrePlantePK);
+        model.addAttribute("carrePlante", carrePlante);
+        fillUpTheModel(potagerId, carreId, model);
+        return "carre-plante/update-carre-plante-form";
+    }
+
+    @PostMapping("/{planteId}/valider-update")
+    public String update(@PathVariable Integer potagerId, @PathVariable Integer carreId, @PathVariable Integer planteId, @Valid CarrePlante carrePlante, BindingResult result, Model model) {
+        if (result.hasErrors()) {
+            return "carre-plante/update-carre-plante-form";
+        } else {
+            CarrePlantePK carrePlantePK = new CarrePlantePK(carreId, planteId);
+            carrePlante.setId(carrePlantePK);
+            carrePlanteService.update(carrePlante);
+            return "redirect:/potager/" + potagerId + "/carre/" + carreId + "/plantation/list";
+        }
     }
 
     private void fillUpTheModel(Integer potagerId, Integer carreId, Model model) {

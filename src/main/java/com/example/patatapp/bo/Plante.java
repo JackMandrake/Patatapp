@@ -26,6 +26,8 @@ public class Plante {
     @Min(1)
     private int surface;
 
+    private String imageUrl = "/image/legume.png";
+
     @OneToMany(mappedBy = "plante")
     List<CarrePlante> carrePlanteList = new ArrayList<>();
 
@@ -41,4 +43,10 @@ public class Plante {
     public int hashCode() {
         return Objects.hash(name);
     }
+
+    @Override
+    public String toString() {
+        return name + " (" + surface + " cm²)";
+    }
+
 }
