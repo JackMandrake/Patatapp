@@ -7,30 +7,40 @@
 
 <header th:replace="fragments/header :: header">header</header>
 
-	<div class="container mt-5">
+<div class="container mt-4">
+	<nav aria-label="breadcrumb">
+		<ol class="breadcrumb">
+			<li class="breadcrumb-item"><a th:href="@{/potager/list}">Potagers</a></li>
+			<li class="breadcrumb-item"><a th:href="@{/potager/{potagerId}/carre/list (potagerId=${potagerId})}">Carrés</a></li>
+			<li class="breadcrumb-item active" aria-current="page">Crée un nouveau carré</li>
+		</ol>
+	</nav>
+</div>
 
-		<form
-			th:action="@{/potager/{potagerId}/carre/valider (potagerId=${potagerId})}"
-			th:object="${carre}" method="post">
-			<div class="mb-3">
-				<label class="form-label">Surface (m²)</label>
-				<input class="form-control" type="number" th:field="*{surface}" title="surface">
-				<span th:if="${#fields.hasErrors('surface')}" th:errors="*{surface}"></span>
-			</div>
-			<div class="mb-3">
-				<label class="form-label">Type de sol</label>
-				<input class="form-control" type="text" th:field="*{typeDeSol}" title="typeDeSol">
-				<span th:if="${#fields.hasErrors('typeDeSol')}" th:errors="*{typeDeSol}"></span>
-			</div>
-			<div class="mb-3">
-				<label class="form-label">Exposition</label>
-				<input class="form-control" type="text" th:field="*{exposition}" title="exposition">
-				<span th:if="${#fields.hasErrors('exposition')}" th:errors="*{exposition}"></span>
-			</div>
-			<input class="btn btn-success" type="submit" value="Crée un nouveau carre">
-		</form>
+<div class="container mt-5 my-container">
 
-	</div>
+	<form
+		th:action="@{/potager/{potagerId}/carre/valider (potagerId=${potagerId})}"
+		th:object="${carre}" method="post">
+		<div class="mb-3">
+			<label class="form-label">Surface (m²)</label>
+			<input class="form-control" type="number" th:field="*{surface}" title="surface">
+			<span th:if="${#fields.hasErrors('surface')}" th:errors="*{surface}"></span>
+		</div>
+		<div class="mb-3">
+			<label class="form-label">Type de sol</label>
+			<input class="form-control" type="text" th:field="*{typeDeSol}" title="typeDeSol">
+			<span th:if="${#fields.hasErrors('typeDeSol')}" th:errors="*{typeDeSol}"></span>
+		</div>
+		<div class="mb-3">
+			<label class="form-label">Exposition</label>
+			<input class="form-control" type="text" th:field="*{exposition}" title="exposition">
+			<span th:if="${#fields.hasErrors('exposition')}" th:errors="*{exposition}"></span>
+		</div>
+		<input class="btn btn-success" type="submit" value="Crée un nouveau carre">
+	</form>
+
+</div>
 
 <footer th:replace="fragments/footer :: footer">footer</footer>
 

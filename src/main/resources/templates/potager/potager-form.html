@@ -7,7 +7,16 @@
 
 <header th:replace="fragments/header :: header">header</header>
 
-<div class="container mt-5">
+<div class="container mt-4">
+	<nav aria-label="breadcrumb">
+		<ol class="breadcrumb">
+			<li class="breadcrumb-item"><a th:href="@{/potager/list}">Potagers</a></li>
+			<li class="breadcrumb-item active" aria-current="page">Crée un nouveau potager</li>
+		</ol>
+	</nav>
+</div>
+
+<div class="container mt-5 my-container">
 
 	<form th:action="@{/potager/valider}" th:object="${potager}" method="post">
 		<div class="mb-3">

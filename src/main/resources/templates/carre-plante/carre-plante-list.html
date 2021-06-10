@@ -6,13 +6,23 @@
 
 <header th:replace="fragments/header :: header">header</header>
 
-<div class="container">
+<div class="container mt-4">
+	<nav aria-label="breadcrumb">
+		<ol class="breadcrumb">
+			<li class="breadcrumb-item"><a th:href="@{/potager/list}">Potagers</a></li>
+			<li class="breadcrumb-item"><a th:href="@{/potager/{potagerId}/carre/list (potagerId=${potagerId})}">Carrés</a></li>
+			<li class="breadcrumb-item active" aria-current="page">Plantations</li>
+		</ol>
+	</nav>
+</div>
 
-	<a class="btn btn-success mt-5" th:href="@{/potager/{potagerId}/carre/{carreId}/plantation/add (potagerId=${potagerId}, carreId=${carreId})}">Ajouter une nouvelle plantation</a>
+<div class="container mt-5 my-container">
+
+	<a class="btn btn-success" th:href="@{/potager/{potagerId}/carre/{carreId}/plantation/add (potagerId=${potagerId}, carreId=${carreId})}">Ajouter une nouvelle plantation</a>
 
 	<h3 class="my-5" th:if="${carrePlanteList!=null and carrePlanteList.isEmpty()}">Il n'y pas encore de plantation!</h3>
 	<div th:if="${carrePlanteList!=null and !carrePlanteList.isEmpty()}">
-		<h3 class="my-5">Liste des potagers :</h3>
+		<h3 class="my-5">Liste des plantations :</h3>
 
 		<table class="table">
 			<thead>

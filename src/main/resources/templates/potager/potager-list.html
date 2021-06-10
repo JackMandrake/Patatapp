@@ -6,9 +6,17 @@
 
 <header th:replace="fragments/header :: header">header</header>
 
-<div class="container">
+<div class="container mt-4">
+	<nav aria-label="breadcrumb">
+		<ol class="breadcrumb">
+			<li class="breadcrumb-item active" aria-current="page">Potagers</li>
+		</ol>
+	</nav>
+</div>
 
-	<a class="btn btn-success mt-5" th:href="@{/potager/add}">Crée un nouveau potager</a>
+<div class="container mt-5 my-container">
+
+	<a class="btn btn-success" th:href="@{/potager/add}">Crée un nouveau potager</a>
 
 	<h3 class="my-5" th:if="${potagerList!=null and potagerList.isEmpty()}">Il n'y pas encore de potager!</h3>
 	<div th:if="${potagerList!=null and !potagerList.isEmpty()}">
@@ -21,7 +29,7 @@
 				<th scope="col">Nom</th>
 				<th scope="col">Surface</th>
 				<th scope="col">Code postale</th>
-				<th scope="col">Surface</th>
+				<th scope="col">Ville</th>
 				<th scope="col"></th>
 				<th scope="col"></th>
 				<th scope="col"></th>

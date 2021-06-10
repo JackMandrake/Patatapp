@@ -7,9 +7,18 @@
 
 <header th:replace="fragments/header :: header">header</header>
 
-<div class="container">
+<div class="container mt-4">
+	<nav aria-label="breadcrumb">
+		<ol class="breadcrumb">
+			<li class="breadcrumb-item"><a th:href="@{/potager/list}">Potagers</a></li>
+			<li class="breadcrumb-item active" aria-current="page">Carrés</li>
+		</ol>
+	</nav>
+</div>
 
-	<a class="btn btn-success mt-5" th:href="@{/potager/{potagerId}/carre/add (potagerId=${potagerId})}">Crée un nouveau carré</a>
+<div class="container mt-5 my-container">
+
+	<a class="btn btn-success" th:href="@{/potager/{potagerId}/carre/add (potagerId=${potagerId})}">Crée un nouveau carré</a>
 
 	<h3 class="my-5" th:if="${carreList!=null and carreList.isEmpty()}">Il n'y pas encore de carré!</h3>
 	<div th:if="${carreList!=null and !carreList.isEmpty()}">

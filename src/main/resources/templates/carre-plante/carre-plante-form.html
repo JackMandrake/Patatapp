@@ -7,7 +7,18 @@
 
 <header th:replace="fragments/header :: header">header</header>
 
-<div class="container mt-5">
+<div class="container mt-4">
+	<nav aria-label="breadcrumb">
+		<ol class="breadcrumb">
+			<li class="breadcrumb-item"><a th:href="@{/potager/list}">Potagers</a></li>
+			<li class="breadcrumb-item"><a th:href="@{/potager/{potagerId}/carre/list (potagerId=${potagerId})}">Carrés</a></li>
+			<li class="breadcrumb-item"><a th:href="@{/potager/{potagerId}/carre/{carreId}/plantation/list (potagerId=${potagerId}, carreId=${carreId})}">Plantations</a></li>
+			<li class="breadcrumb-item active" aria-current="page">Crée une nouvelle plantation</li>
+		</ol>
+	</nav>
+</div>
+
+<div class="container mt-5 my-container">
 
 	<form th:action="@{/potager/{potagerId}/carre/{carreId}/plantation/valider (potagerId=${potagerId}, carreId=${carreId})}" th:object="${carrePlante}" method="post">
 
