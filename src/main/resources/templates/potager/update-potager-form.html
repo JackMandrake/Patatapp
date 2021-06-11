@@ -17,7 +17,7 @@
 
 <div class="container mt-5 my-container">
 
-	<form th:action="@{/potager/{id}/valider-update (id=${potager.id})}" th:object="${potager}" method="post">
+	<form id="myForm" th:action="@{/potager/{id}/valider-update (id=${potager.id})}" th:object="${potager}" method="post">
 		<div class="mb-3">
 			<label class="form-label">Nom</label>
 			<input class="form-control" type="text" th:field="*{name}" title="nom du potager">
@@ -30,13 +30,18 @@
 		</div>
 		<div class="mb-3">
 			<label class="form-label">Code postal</label>
-			<input class="form-control" type="text" th:field="*{zipCode}" title="code postal">
-			<span th:if="${#fields.hasErrors('zipCode')}" th:errors="*{zipCode}"></span>
+			<input id="zipCode" class="form-control" type="text" th:field="*{zipCode}" title="code postal">
+			<span id="zipCodeErrorTh" th:if="${#fields.hasErrors('zipCode')}" th:errors="*{zipCode}"></span>
+			<span id="zipCodeError"></span>
 		</div>
 		<div class="mb-3">
-			<label class="form-label">Ville</label>
-			<input class="form-control" type="text" th:field="*{city}" title="ville">
-			<span th:if="${#fields.hasErrors('city')}" th:errors="*{city}"></span>
+			<label for="cities" class="form-label">Ville</label>
+			<select id="cities" th:field="*{city}">
+				<option value="">
+					Rentre un code postal pour avoir une liste de ville
+				</option>
+			</select>
+			<span id="citiesError" th:if="${#fields.hasErrors('city')}" th:errors="*{city}"></span>
 		</div>
 		<input class="btn btn-success" type="submit" value="Modifier le potager">
 	</form>
@@ -46,6 +51,8 @@
 <footer th:replace="fragments/footer :: footer">footer</footer>
 
 <div th:replace="fragments/script :: script">script</div>
+
+<script type="text/javascript" th:src="@{/js/script.js}"></script>
 
 </body>
 </html>
