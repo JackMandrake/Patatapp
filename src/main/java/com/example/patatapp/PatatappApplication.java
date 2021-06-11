@@ -12,6 +12,8 @@ import org.springframework.boot.web.client.RestTemplateBuilder;
 import org.springframework.context.annotation.Bean;
 import org.springframework.web.client.RestTemplate;
 
+import java.time.LocalDate;
+
 @SpringBootApplication
 public class PatatappApplication {
 
@@ -86,6 +88,8 @@ public class PatatappApplication {
             CarrePlante carrePlante1 = new CarrePlante();
             carrePlante1.setPlante(plante1);
             carrePlante1.setQuantite(2);
+            carrePlante1.setPlantingDate(LocalDate.now());
+            carrePlante1.setHarvestDate(LocalDate.now().plusMonths(3));
             carrePlante1.setCarre(carre21);
             carre21.getCarrePlanteList().add(carrePlante1);
             carrePlante1.getPlante().getCarrePlanteList().add(carrePlante1);
@@ -95,6 +99,8 @@ public class PatatappApplication {
             CarrePlante carrePlante2 = new CarrePlante();
             carrePlante2.setPlante(plante2);
             carrePlante2.setQuantite(4);
+            carrePlante2.setPlantingDate(LocalDate.now());
+            carrePlante2.setHarvestDate(LocalDate.now().plusMonths(4));
             carrePlante2.setCarre(carre21);
             carre21.getCarrePlanteList().add(carrePlante2);
             carrePlante2.getPlante().getCarrePlanteList().add(carrePlante2);
@@ -104,6 +110,8 @@ public class PatatappApplication {
             CarrePlante carrePlante3 = new CarrePlante();
             carrePlante3.setPlante(plante2);
             carrePlante3.setQuantite(18);
+            carrePlante3.setPlantingDate(LocalDate.now());
+            carrePlante3.setHarvestDate(LocalDate.now().plusMonths(5));
             carrePlante3.setCarre(carre22);
             carre22.getCarrePlanteList().add(carrePlante3);
             carrePlante3.getPlante().getCarrePlanteList().add(carrePlante3);
@@ -113,6 +121,8 @@ public class PatatappApplication {
             CarrePlante carrePlante4 = new CarrePlante();
             carrePlante4.setPlante(plante3);
             carrePlante4.setQuantite(18);
+            carrePlante4.setPlantingDate(LocalDate.now());
+            carrePlante4.setHarvestDate(LocalDate.now().plusMonths(2));
             carrePlante4.setCarre(carre22);
             carre22.getCarrePlanteList().add(carrePlante4);
             carrePlante4.getPlante().getCarrePlanteList().add(carrePlante4);

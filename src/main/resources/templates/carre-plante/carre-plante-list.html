@@ -29,6 +29,8 @@
 			<tr>
 				<th scope="col">quantité</th>
 				<th scope="col">Plante</th>
+				<th scope="col">Date de semence</th>
+				<th scope="col">Date de récolte</th>
 				<th scope="col"></th>
 				<th scope="col"></th>
 			</tr>
@@ -37,6 +39,8 @@
 			<tr th:each="carrePlante : ${carrePlanteList}">
 				<td th:text="${carrePlante.quantite}"></td>
 				<td th:text="${carrePlante.plante.name}"></td>
+				<td th:text="${#temporals.format(carrePlante.plantingDate,'dd/MM/yyyy')}"></td>
+				<td th:text="${#temporals.format(carrePlante.harvestDate,'dd/MM/yyyy')}"></td>
 				<td><a class="btn btn-success" th:href="@{/potager/{potagerId}/carre/{carreId}/plantation/{planteId}/delete (potagerId=${potagerId}, carreId=${carreId}, planteId=${carrePlante.plante.id})}">Supprimer</a></td>
 				<td><a class="btn btn-success" th:href="@{/potager/{potagerId}/carre/{carreId}/plantation/{planteId}/update (potagerId=${potagerId}, carreId=${carreId}, planteId=${carrePlante.plante.id})}">Modifier</a></td>
 			</tr>

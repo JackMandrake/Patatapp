@@ -2,8 +2,13 @@ package com.example.patatapp.bo;
 
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
+import javax.validation.constraints.Min;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
+import java.time.LocalDate;
 
 @Data
 @NoArgsConstructor
@@ -23,6 +28,15 @@ public class CarrePlante {
     @JoinColumn(name = "plante_id")
     Plante plante;
 
+    @Min(1)
     private int quantite;
+
+    @NotNull
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
+    private LocalDate plantingDate;
+
+    @NotNull
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
+    private LocalDate harvestDate;
 
 }

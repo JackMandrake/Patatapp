@@ -39,7 +39,6 @@ function sendData() {
             zipCodeError.innerHTML = "";
             str = str.replace("[", "");
             str = str.replace("]", "");
-            str = str.replace(/ /g, "");
             str = str.replace(/"/g, "");
             const cities = str.split(',');
             const select = document.getElementById("cities");

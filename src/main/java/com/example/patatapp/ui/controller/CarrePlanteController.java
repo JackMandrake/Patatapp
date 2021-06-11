@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import javax.validation.Valid;
+import java.time.LocalDate;
 import java.util.List;
 
 @Controller
@@ -46,6 +47,8 @@ public class CarrePlanteController {
 	@GetMapping("/add")
 	public String showCreateCarrePlanteForm(@PathVariable Integer potagerId, @PathVariable Integer carreId, Model model) {
 		CarrePlante carrePlante = new CarrePlante();
+        carrePlante.setQuantite(1);
+        carrePlante.setPlantingDate(LocalDate.now());
         model.addAttribute("carrePlante", carrePlante);
         fillUpTheModel(potagerId, carreId, model);
 		return "carre-plante/carre-plante-form";
