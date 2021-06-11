@@ -34,6 +34,9 @@ public class Potager {
     @JoinColumn(name = "potager_id")
     private List<Carre> carreList = new ArrayList<>();
 
+    @ManyToMany(mappedBy = "potagers", fetch = FetchType.LAZY)
+    private final List<Action> actions = new ArrayList<>();
+
     public void addCarre(Carre carre) {
         carreList.add(carre);
         carre.setPotager(this);

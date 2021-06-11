@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head th:replace="fragments/head :: head"><title></title></head>
+
+<body>
+
+<header th:replace="fragments/header :: header">header</header>
+
+<div class="container mt-5 my-container">
+
+	<form th:action="@{/action/valider}" th:object="${action}" method="post">
+
+		<div class="mb-3">
+			<label class="form-label" >Action à réaliser</label>
+			<input class="form-control" type="text" th:field="*{event}" title="Action à réaliser">
+			<span th:if="${#fields.hasErrors('event')}" th:errors="*{event}"></span>
+		</div>
+
+		<div class="mb-3">
+			<label class="form-label">Date</label>
+			<input class="form-control" type="date" th:field="*{date}" title="Date de l'action">
+			<span th:if="${#fields.hasErrors('date')}" th:errors="*{date}"></span>
+		</div>
+
+		<div class="form-check">
+			<input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1" th:field="*{potagerChosen}" th:value="true">
+			<label class="form-check-label" for="flexRadioDefault1">
+				Potager
+			</label>
+		</div>
+		<div class="form-check">
+			<input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2" th:field="*{potagerChosen}" th:value="false">
+			<label class="form-check-label" for="flexRadioDefault2">
+				Carré
+			</label>
+		</div>
+
+		<div class="mb-3" th:if="${action.potagerChosen}">
+			<label for="potager" class="form-label">Potagers</label>
+			<select id="potager" th:field="*{potagers}" multiple>
+				<option th:each="potager : ${potagers}" th:value="${potager.id}" th:text="${potager.name}">
+				</option>
+			</select>
+		</div>
+
+		<div class="mb-3" th:if="${!action.potagerChosen}">
+			<label for="carre" class="form-label">Carrés</label>
+			<select id="carre" th:field="*{carres}" multiple>
+				<option th:each="carre : ${carres}" th:value="${carre.id}" th:text="${carre.id}">
+				</option>
+			</select>
+		</div>
+
+		<input  class="btn btn-success" type="submit" value="Ajouter une nouvelle plante">
+	</form>
+
+</div>
+
+<footer th:replace="fragments/footer :: footer">footer</footer>
+
+<div th:replace="fragments/script :: script">script</div>
+
+</body>
+</html>

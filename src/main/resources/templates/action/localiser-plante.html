@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head th:replace="fragments/head :: head"><title></title></head>
+
+<body>
+
+<header th:replace="fragments/header :: header">header</header>
+
+<div class="container my-container">
+
+	<h3  class="my-5" th:if="${carres!=null and carres.isEmpty()}">Cette plante n'est pas encore planté!</h3>
+	<div th:if="${carres!=null and !carres.isEmpty()}">
+		<h3 class="my-5">Liste des carrés :</h3>
+		<table class="table" >
+			<thead>
+				<tr>
+					<th scope="col">Potager</th>
+					<th scope="col">L'identifiant du carré</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr th:each="carre : ${carres}">
+					<td>
+						<a class="a-localiser" th:href="@{/potager/{potagerId}/carre/list (potagerId=${carre.potager.id})}" th:text="${carre.potager.name}"></a>
+					</td>
+					<td>
+						<a class="a-localiser" th:href="@{/potager/{potagerId}/carre/{carreId}/plantation/list (potagerId=${carre.potager.id}, carreId=${carre.id})}" th:text="${carre.id}"></a>
+					</td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+	
+</div>
+
+<footer th:replace="fragments/footer :: footer">footer</footer>
+
+<div th:replace="fragments/script :: script">script</div>
+
+</body>
+</html>

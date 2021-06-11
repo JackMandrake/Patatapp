@@ -34,6 +34,9 @@ public class Carre {
 	@OneToMany(mappedBy = "carre")
 	List<CarrePlante> carrePlanteList = new ArrayList<>();
 
+	@ManyToMany(mappedBy = "carres", fetch = FetchType.LAZY)
+	private final List<Action> actions = new ArrayList<>();
+
 	@Override
 	public String toString() {
 		return "Carre{" +

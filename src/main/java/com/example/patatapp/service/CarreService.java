@@ -21,7 +21,7 @@ public class CarreService {
 		this.dao = dao;
 	}
 	
-	public List<Carre> findAll(Integer potagerId) {
+	public List<Carre> findAllByPotagerId(Integer potagerId) {
 		return dao.findAllByPotagerId(potagerId);
 	}
 
@@ -55,4 +55,7 @@ public class CarreService {
 		}
 	}
 
+	public List<Carre> findAll() {
+		return (List<Carre>) dao.findAll();
+	}
 }

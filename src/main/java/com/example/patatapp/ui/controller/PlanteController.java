@@ -5,7 +5,6 @@ import com.example.patatapp.bo.Carre;
 import com.example.patatapp.bo.Plante;
 import com.example.patatapp.service.BllException;
 import com.example.patatapp.service.CarrePlanteService;
-import com.example.patatapp.service.CarreService;
 import com.example.patatapp.service.PlanteService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
