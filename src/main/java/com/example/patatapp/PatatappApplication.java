@@ -52,7 +52,7 @@ public class PatatappApplication {
             // Creation des potager avec carré
             Potager potager1 = new Potager();
             potager1.setName("Plein air");
-            potager1.setZipCode("2900");
+            potager1.setZipCode("29000");
             potager1.setCity("Quimper");
             potager1.setSurface(100);
             potagerDao.save(potager1);

@@ -2,8 +2,6 @@ package com.example.patatapp.ui.controller;
 
 import com.example.patatapp.bo.Potager;
 import com.example.patatapp.service.PotagerService;
-import org.json.JSONArray;
-import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -12,10 +10,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.client.RestTemplate;
 
 import javax.validation.Valid;
-import java.util.ArrayList;
 import java.util.List;
 
 @Controller
@@ -41,19 +37,14 @@ public class PotagerController {
     public String showCreatePotagerForm(Model model) {
         Potager potager = new Potager();
         potager.setName("nouveau potager");
+        potager.setSurface(10);
         model.addAttribute("potager", potager);
         model.addAttribute("title", "Potager");
         return "potager/potager-form";
     }
 
     @PostMapping("/valider")
-    public String create(RestTemplate restTemplate, @Valid Potager potager, BindingResult result, Model model) {
-        String json = restTemplate.getForObject("http://api.zippopotam.us/fr/" + potager.getZipCode() , String.class);
-        JSONObject jsonObject = new JSONObject(json);
-        JSONArray jsonArray = jsonObject.getJSONArray("places");
-        List<String> cities = new ArrayList<>();
-        jsonArray.iterator().forEachRemaining(o -> cities.add(((JSONObject) o).getString("place name")));
-        model.addAttribute("cities", cities);
+    public String create(@Valid Potager potager, BindingResult result) {
         if (result.hasErrors()) {
             return "potager/potager-form";
         } else {
@@ -107,7 +98,5 @@ public class PotagerController {
         model.addAttribute("title", "Potager");
         return "potager/potager-overview";
     }
-
-
 
 }

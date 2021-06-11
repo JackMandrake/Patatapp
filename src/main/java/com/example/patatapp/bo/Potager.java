@@ -6,7 +6,6 @@ import lombok.NoArgsConstructor;
 import javax.persistence.*;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotBlank;
-import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -25,8 +24,10 @@ public class Potager {
     @Min(1)
     private int surface;
 
+    @NotBlank
     private String zipCode;
 
+    @NotBlank
     private String city;
 
     @OneToMany(cascade = CascadeType.MERGE)
