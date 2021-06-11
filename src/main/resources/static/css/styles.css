@@ -54,3 +54,7 @@ footer {
 .a-carre:hover {
     color: #c7eb52;
 }
+
+.a-localiser {
+    text-decoration: none;
+}

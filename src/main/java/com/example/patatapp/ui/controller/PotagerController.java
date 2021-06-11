@@ -85,7 +85,7 @@ public class PotagerController {
         List<Potager> potagerList = service.findAll();
         model.addAttribute("potagerList", potagerList);
         model.addAttribute("potager", null);
-        model.addAttribute("title", "Potager");
+        model.addAttribute("title", "Vue d'ensemble");
         return "potager/potager-overview";
     }
 
@@ -95,7 +95,7 @@ public class PotagerController {
         Potager potager = service.findById(potagerId);
         model.addAttribute("potagerList", potagerList);
         model.addAttribute("potager", potager);
-        model.addAttribute("title", "Potager");
+        model.addAttribute("title", "Vue d'ensemble");
         return "potager/potager-overview";
     }
 

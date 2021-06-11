@@ -1,8 +1,11 @@
 package com.example.patatapp.ui.controller;
 
 
+import com.example.patatapp.bo.Carre;
 import com.example.patatapp.bo.Plante;
 import com.example.patatapp.service.BllException;
+import com.example.patatapp.service.CarrePlanteService;
+import com.example.patatapp.service.CarreService;
 import com.example.patatapp.service.PlanteService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -22,16 +25,18 @@ import java.util.List;
 @RequestMapping("/plante")
 public class PlanteController {
 
-    private final PlanteService service;
+    private final PlanteService planteService;
+    private final CarrePlanteService carrePlanteService;
 
     @Autowired
-    public PlanteController(PlanteService service) {
-        this.service = service;
+    public PlanteController(PlanteService planteService, CarrePlanteService carrePlanteService) {
+        this.planteService = planteService;
+        this.carrePlanteService = carrePlanteService;
     }
 
     @GetMapping("/list")
     public String getAll(Model model) {
-        List<Plante> planteList = service.findAll();
+        List<Plante> planteList = planteService.findAll();
         model.addAttribute("planteList", planteList);
         model.addAttribute("title", "Plante");
         return "plante/plante-list";
@@ -52,7 +57,7 @@ public class PlanteController {
             return "plante/plante-form";
         } else {
             try {
-                service.create(plante);
+                planteService.create(plante);
             } catch (BllException e) {
                 result.addError(new FieldError("plante", "name", e.getMessage()));
                 return "plante/plante-form";
@@ -64,7 +69,7 @@ public class PlanteController {
     @GetMapping("/{id}/delete")
     public String delete(@PathVariable Integer id, RedirectAttributes redirectAttributes) {
         try {
-            service.deleteById(id);
+            planteService.deleteById(id);
             return "redirect:/plante/list";
         } catch (BllException e) {
 //            redirectAttributes.addAttribute("errorMessage", e.getMessage());
@@ -74,7 +79,7 @@ public class PlanteController {
 
     @GetMapping("/{id}/update")
     public String showUpdatePlanteForm(@PathVariable Integer id, Model model) {
-        Plante plante = service.findById(id);
+        Plante plante = planteService.findById(id);
         model.addAttribute("plante", plante);
         model.addAttribute("title", "Plante");
         return "plante/update-plante-form";
@@ -86,9 +91,17 @@ public class PlanteController {
             return "plante/update-plante-form";
         } else {
             plante.setId(id);
-            service.update(plante);
+            planteService.update(plante);
             return "redirect:/plante/list";
         }
+    }
+
+    @GetMapping("/{id}/localiser")
+    public String localiser(@PathVariable Integer id, Model model) {
+        List<Carre> carres = carrePlanteService.localiserPlante(id);
+        model.addAttribute("carres", carres);
+        model.addAttribute("title", "Localiser une plante");
+        return "/plante/localiser-plante";
     }
 
 }

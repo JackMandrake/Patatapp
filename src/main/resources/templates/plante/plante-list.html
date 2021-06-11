@@ -27,6 +27,7 @@
 					<th scope="col">Surface (cm²)</th>
 					<th scope="col"></th>
 					<th scope="col"></th>
+					<th scope="col"></th>
 				</tr>
 			</thead>
 			<tbody>
@@ -36,6 +37,7 @@
 					<td th:text="${plante.surface}"></td>
 					<td><a class="btn btn-success" th:href="@{/plante/{id}/delete (id=${plante.id})}">Supprimer</a></td>
 					<td><a class="btn btn-success" th:href="@{/plante/{id}/update (id=${plante.id})}">Modifier</a></td>
+					<td><a class="btn btn-success" th:href="@{/plante/{id}/localiser (id=${plante.id})}">Localiser</a></td>
 				</tr>
 			</tbody>
 		</table>

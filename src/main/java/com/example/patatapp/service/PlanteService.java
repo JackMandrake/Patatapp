@@ -3,7 +3,6 @@ package com.example.patatapp.service;
 
 import com.example.patatapp.bo.Plante;
 import com.example.patatapp.dao.PlanteDaoInterface;
-import org.hibernate.exception.ConstraintViolationException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -45,4 +44,5 @@ public class PlanteService {
     public void update(Plante plante) {
         dao.save(plante);
     }
+
 }

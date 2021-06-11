@@ -50,4 +50,8 @@ public class CarrePlanteService {
 	public void update(CarrePlante carrePlante) {
 		dao.save(carrePlante);
 	}
+
+	public List<Carre> localiserPlante(Integer planteId) {
+		return dao.findAllByPlanteId(planteId);
+	}
 }
