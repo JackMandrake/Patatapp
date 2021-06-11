@@ -30,6 +30,7 @@ public class PotagerController {
         List<Potager> potagerList = service.findAll();
         model.addAttribute("potagerList", potagerList);
         model.addAttribute("title", "Potager");
+        model.addAttribute("classPotagerActive", "active");
         return "potager/potager-list";
     }
 
@@ -40,6 +41,7 @@ public class PotagerController {
         potager.setSurface(10);
         model.addAttribute("potager", potager);
         model.addAttribute("title", "Potager");
+        model.addAttribute("classPotagerActive", "active");
         return "potager/potager-form";
     }
 
@@ -64,6 +66,7 @@ public class PotagerController {
         Potager potager = service.findById(id);
         model.addAttribute("potager", potager);
         model.addAttribute("title", "Potager");
+        model.addAttribute("classPotagerActive", "active");
         return "potager/update-potager-form";
     }
 
@@ -86,6 +89,7 @@ public class PotagerController {
         model.addAttribute("potagerList", potagerList);
         model.addAttribute("potager", null);
         model.addAttribute("title", "Vue d'ensemble");
+        model.addAttribute("classOverviewActive", "active");
         return "potager/potager-overview";
     }
 
@@ -96,6 +100,7 @@ public class PotagerController {
         model.addAttribute("potagerList", potagerList);
         model.addAttribute("potager", potager);
         model.addAttribute("title", "Vue d'ensemble");
+        model.addAttribute("classOverviewActive", "active");
         return "potager/potager-overview";
     }
 

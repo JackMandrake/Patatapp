@@ -39,6 +39,7 @@ public class PlanteController {
         List<Plante> planteList = planteService.findAll();
         model.addAttribute("planteList", planteList);
         model.addAttribute("title", "Plante");
+        model.addAttribute("classPlanteActive", "active");
         return "plante/plante-list";
     }
 
@@ -48,6 +49,7 @@ public class PlanteController {
         plante.setName("nouvelle plante");
         model.addAttribute("plante", plante);
         model.addAttribute("title", "Plante");
+        model.addAttribute("classPlanteActive", "active");
         return "plante/plante-form";
     }
 
@@ -82,6 +84,7 @@ public class PlanteController {
         Plante plante = planteService.findById(id);
         model.addAttribute("plante", plante);
         model.addAttribute("title", "Plante");
+        model.addAttribute("classPlanteActive", "active");
         return "plante/update-plante-form";
     }
 
@@ -101,6 +104,7 @@ public class PlanteController {
         List<Carre> carres = carrePlanteService.localiserPlante(id);
         model.addAttribute("carres", carres);
         model.addAttribute("title", "Localiser une plante");
+        model.addAttribute("classPlanteActive", "active");
         return "/plante/localiser-plante";
     }
 
