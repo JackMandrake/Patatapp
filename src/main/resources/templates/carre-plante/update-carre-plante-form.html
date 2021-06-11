@@ -36,6 +36,18 @@
 			<span th:if="${#fields.hasErrors('quantite')}" th:errors="*{quantite}"></span>
 		</div>
 
+		<div class="mb-3">
+			<label class="form-label">Date de semence</label>
+			<input class="form-control" type="date" th:field="*{plantingDate}" title="Date de semence">
+			<span th:if="${#fields.hasErrors('plantingDate')}" th:errors="*{plantingDate}"></span>
+		</div>
+
+		<div class="mb-3">
+			<label class="form-label">Date de récolte</label>
+			<input class="form-control" type="date" th:field="*{harvestDate}" title="Date de récolte">
+			<span th:if="${#fields.hasErrors('harvestDate')}" th:errors="*{harvestDate}"></span>
+		</div>
+
 		<input class="btn btn-success" type="submit" value="Modifier la plantation">
 
 	</form>
