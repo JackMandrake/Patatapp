@@ -112,6 +112,14 @@
 		// The data sent is what the user provided in the form
 		XHR.send(FD);
 	}
+
+	document.addEventListener('keypress', logKey);
+	function logKey(e) {
+		if(e.keyCode === 13) {
+			e.preventDefault();
+		}
+	}
+
 </script>
 
 </body>

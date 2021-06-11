@@ -15,7 +15,7 @@ import java.util.List;
 public class CityWS {
 
     @PostMapping("/ws/cities")
-    public List<String> getCities(RestTemplate restTemplate, @Valid Potager potager) {
+    public List<String> getCities(RestTemplate restTemplate, Potager potager) {
         List<String> cities = new ArrayList<>();
         String json;
         String url = "http://api.zippopotam.us/fr/" + potager.getZipCode();
