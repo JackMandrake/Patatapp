@@ -45,6 +45,7 @@ public class PotagerController {
         Potager potager = new Potager();
         potager.setName("nouveau potager");
         potager.setSurface(10);
+        potager.setZipCode("29000");
         model.addAttribute("potager", potager);
         model.addAttribute("title", "Potager");
         model.addAttribute("classPotagerActive", "active");
@@ -116,7 +117,7 @@ public class PotagerController {
     @GetMapping("/{potagerId}/overview")
     public String potagerOverview(@PathVariable Integer potagerId, Model model) {
         List<Potager> potagerList = service.findAll();
-        Potager potager = null;
+        Potager potager;
         try {
             potager = service.findById(potagerId);
         } catch (BllException e) {

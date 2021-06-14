@@ -1,12 +1,13 @@
 
+getCities();
 
 const zipCode = document.getElementById("zipCode");
 
 zipCode.addEventListener('change', () => {
-    sendData();
+    getCities();
 });
 
-function sendData() {
+function getCities() {
 
     const form = document.getElementById("myForm");
 
