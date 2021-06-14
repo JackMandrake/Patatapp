@@ -29,8 +29,8 @@ public class PotagerService {
         dao.deleteById(id);
     }
 
-    public Potager findById(Integer id) {
-        return dao.findById(id).orElse(null);
+    public Potager findById(Integer id) throws BllException {
+        return dao.findById(id).orElseThrow(() -> new BllException("Le potager avec l'id = " + id + " n'existe pas!"));
     }
 
     public void update(Potager potager) {

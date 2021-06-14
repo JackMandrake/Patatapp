@@ -35,7 +35,7 @@ public class CarreController {
     }
 
     @GetMapping("/list")
-	public String getAll(@PathVariable Integer potagerId, Model model) {
+	public String getAll(@PathVariable Integer potagerId, Model model) throws BllException {
 		List<Carre> carreList = carreService.findAllByPotagerId(potagerId);
 		model.addAttribute("carreList", carreList);
         model.addAttribute("potagerId", potagerId);
@@ -58,7 +58,7 @@ public class CarreController {
 	}
 	
 	@PostMapping("/valider")
-    public String create(@PathVariable Integer potagerId, @Valid Carre carre, BindingResult result) {
+    public String create(@PathVariable Integer potagerId, @Valid Carre carre, BindingResult result) throws BllException {
         if (result.hasErrors()) {
             return "carre/carre-form";
         } else {
@@ -89,7 +89,7 @@ public class CarreController {
     }
 
     @PostMapping("/{id}/valider-update")
-    public String update(@PathVariable Integer potagerId, @PathVariable Integer id, @Valid Carre carre, BindingResult result) {
+    public String update(@PathVariable Integer potagerId, @PathVariable Integer id, @Valid Carre carre, BindingResult result) throws BllException {
         if (result.hasErrors()) {
             return "carre/update-carre-form";
         } else {

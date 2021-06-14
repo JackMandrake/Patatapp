@@ -1,6 +1,8 @@
 package com.example.patatapp.ui.controller;
 
+import com.example.patatapp.bo.Error;
 import com.example.patatapp.bo.Potager;
+import com.example.patatapp.service.BllException;
 import com.example.patatapp.service.PotagerService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -19,15 +21,18 @@ import java.util.List;
 public class PotagerController {
 
     private final PotagerService service;
+    private final Error error;
 
     @Autowired
-    public PotagerController(PotagerService service) {
+    public PotagerController(PotagerService service, Error error) {
         this.service = service;
+        this.error = error;
     }
 
     @GetMapping("/list")
     public String getAll(Model model) {
         List<Potager> potagerList = service.findAll();
+        model.addAttribute("errorMessage", error.getErrorMessage());
         model.addAttribute("potagerList", potagerList);
         model.addAttribute("title", "Potager");
         model.addAttribute("classPotagerActive", "active");
@@ -62,7 +67,7 @@ public class PotagerController {
     }
 
     @GetMapping("/{id}/update")
-    public String showUpdatePotagerForm(@PathVariable Integer id, Model model) {
+    public String showUpdatePotagerForm(@PathVariable Integer id, Model model) throws BllException {
         Potager potager = service.findById(id);
         model.addAttribute("potager", potager);
         model.addAttribute("title", "Potager");
@@ -75,11 +80,16 @@ public class PotagerController {
         if (result.hasErrors()) {
             return "potager/update-potager-form";
         } else {
-            Potager potagerFromDb = service.findById(id);
-            potager.setId(id);
-            potager.setCarreList(potagerFromDb.getCarreList());
-            service.update(potager);
-            return "redirect:/potager/list";
+            try {
+                Potager potagerFromDb = service.findById(id);
+                potager.setId(id);
+                potager.setCarreList(potagerFromDb.getCarreList());
+                service.update(potager);
+                return "redirect:/potager/list";
+            } catch (BllException e) {
+                error.setErrorMessage(e.getMessage());
+                return "redirect:/potager/list?error";
+            }
         }
     }
 
@@ -94,7 +104,7 @@ public class PotagerController {
     }
 
     @GetMapping("/{potagerId}/overview")
-    public String potagerOverview(@PathVariable Integer potagerId, Model model) {
+    public String potagerOverview(@PathVariable Integer potagerId, Model model) throws BllException {
         List<Potager> potagerList = service.findAll();
         Potager potager = service.findById(potagerId);
         model.addAttribute("potagerList", potagerList);
