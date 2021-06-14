@@ -23,6 +23,11 @@
 		th:action="@{/potager/{potagerId}/carre/valider (potagerId=${potagerId})}"
 		th:object="${carre}" method="post">
 		<div class="mb-3">
+			<label class="form-label">Nom</label>
+			<input class="form-control" type="text" th:field="*{name}" title="nom">
+			<span th:if="${#fields.hasErrors('name')}" th:errors="*{name}"></span>
+		</div>
+		<div class="mb-3">
 			<label class="form-label">Surface (m²)</label>
 			<input class="form-control" type="number" th:field="*{surface}" title="surface">
 			<span th:if="${#fields.hasErrors('surface')}" th:errors="*{surface}"></span>

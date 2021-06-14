@@ -91,6 +91,7 @@ public class CarrePlanteController {
     @PostMapping("/{planteId}/valider-update")
     public String update(@PathVariable Integer potagerId, @PathVariable Integer carreId, @PathVariable Integer planteId, @Valid CarrePlante carrePlante, BindingResult result, Model model) {
         if (result.hasErrors()) {
+            fillUpTheModel(potagerId, carreId, model);
             return "carre-plante/update-carre-plante-form";
         } else {
             CarrePlantePK carrePlantePK = new CarrePlantePK(carreId, planteId);

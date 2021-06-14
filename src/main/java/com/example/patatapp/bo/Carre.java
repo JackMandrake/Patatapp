@@ -19,6 +19,9 @@ public class Carre {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
 
+	@NotBlank
+	private String name;
+
 	@Min(1)
 	private Integer surface;
 	
@@ -39,12 +42,6 @@ public class Carre {
 
 	@Override
 	public String toString() {
-		return "Carre{" +
-				"id=" + id +
-				", surface=" + surface +
-				", typeDeSol='" + typeDeSol + '\'' +
-				", exposition='" + exposition + '\'' +
-				", carrePlanteList.size=" + carrePlanteList.size() +
-				'}';
+		return name;
 	}
 }

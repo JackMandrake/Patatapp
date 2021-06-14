@@ -9,7 +9,7 @@
 
 <div class="container mt-5 my-container">
 
-	<form th:action="@{/action/valider}" th:object="${action}" method="post">
+	<form th:action="@{/action/{id}/valider-update (id=${action.id})}" th:object="${action}" method="post">
 
 		<div class="mb-3">
 			<label class="form-label" >Action à réaliser</label>
@@ -29,10 +29,9 @@
 				<option th:each="carre : ${carres}" th:value="${carre.id}" th:text="${carre.name}">
 				</option>
 			</select>
-			<span th:if="${#fields.hasErrors('carres')}" th:errors="*{carres}"></span>
 		</div>
 
-		<input  class="btn btn-success" type="submit" value="Ajouter une nouvelle action">
+		<input  class="btn btn-success" type="submit" value="Modifier l'action">
 	</form>
 
 </div>

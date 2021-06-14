@@ -59,6 +59,7 @@ public class PatatappApplication {
             potager1.setSurface(100);
             potagerDao.save(potager1);
             Carre carre11 = new Carre();
+            carre11.setName("carré sud");
             carre11.setSurface(10);
             carre11.setExposition("sud");
             carre11.setTypeDeSol("terreux");
@@ -72,12 +73,14 @@ public class PatatappApplication {
             potager2.setSurface(50);
             potagerDao.save(potager2);
             Carre carre21 = new Carre();
+            carre21.setName("carré nord");
             carre21.setSurface(10);
             carre21.setExposition("nord");
             carre21.setTypeDeSol("sableux");
             potager2.addCarre(carre21);
             carreDao.save(carre21);
             Carre carre22 = new Carre();
+            carre22.setName("carré est");
             carre22.setSurface(10);
             carre22.setExposition("est");
             carre22.setTypeDeSol("argileux");

@@ -28,6 +28,7 @@
 			<thead>
 			<tr>
 				<th scope="col">#</th>
+				<th scope="col">Nom</th>
 				<th scope="col">Surface</th>
 				<th scope="col">Type de sol</th>
 				<th scope="col">Exposition</th>
@@ -39,12 +40,13 @@
 			<tbody>
 			<tr th:each="carre : ${carreList}">
 				<td th:text="${carre.id}"></td>
+				<td th:text="${carre.name}"></td>
 				<td th:text="${carre.surface}"></td>
 				<td th:text="${carre.typeDeSol}"></td>
 				<td th:text="${carre.exposition}"></td>
 				<td><a class="btn btn-success" th:href="@{/potager/{potagerId}/carre/{carreId}/delete (potagerId=${potagerId}, carreId=${carre.id})}">Supprimer</a></td>
 				<td><a class="btn btn-success" th:href="@{/potager/{potagerId}/carre/{carreId}/update (potagerId=${potagerId}, carreId=${carre.id})}">Modifier</a></td>
-				<td><a class="btn btn-success" th:href="@{/potager/{potagerId}/carre/{carreId}/plantation/list (potagerId=${potagerId}, carreId=${carre.id})}">Détails</a></td>
+				<td><a class="btn btn-success" th:href="@{/potager/{potagerId}/carre/{carreId}/plantation/list (potagerId=${potagerId}, carreId=${carre.id})}">Liste des plantations</a></td>
 			</tr>
 			</tbody>
 		</table>

@@ -35,7 +35,7 @@
 				<div class="bg-carre m-4 px-4 py-2" th:each="carre : ${potager.carreList}">
 					<div>
 						<a class="a-carre" th:href="@{/potager/{potagerId}/carre/{carreId}/update (potagerId=${potager.id}, carreId=${carre.id})}">
-							<span>Carré de cultures de </span>
+							<span th:text="${carre.name}"></span>
 							<span th:text="${carre.surface}"></span>
 							<span>m² sur un sol de type</span>
 							<span th:text="${carre.typeDeSol}"></span>
@@ -47,6 +47,11 @@
 						<img class="plante-img my-4" th:src="@{${plantation.plante.imageUrl}}" alt="image du legume">
 						<span>x</span>
 						<span th:text="${plantation.quantite}"></span>
+					</a>
+					<a class="mx-4 a-plantation" th:href="@{/action/list}" title="action">
+						<img class="plante-img my-4" th:src="@{/image/action.png}" alt="image de l'action">
+						<span>x</span>
+						<span th:text="${carre.actions.size()}"></span>
 					</a>
 				</div>
 			</div>

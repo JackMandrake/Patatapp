@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head th:replace="fragments/head :: head"><title></title></head>
+
+<body>
+
+<header th:replace="fragments/header :: header">header</header>
+
+<div class="container my-container">
+	
+	<a class="btn btn-success mt-5" th:href="@{/action/add}">Ajouter une nouvelle action</a>
+
+	<h3  class="my-5" th:if="${actions!=null and actions.isEmpty()}">Il n'y pas encore d'action!</h3>
+	<div th:if="${actions!=null and !actions.isEmpty()}">
+		<h3 class="my-5">Liste des actions :</h3>
+		<table class="table" >
+			<thead>
+				<tr>
+					<th scope="col">id</th>
+					<th scope="col">Description</th>
+					<th scope="col">Date</th>
+					<th scope="col">Liste des carrés</th>
+					<th scope="col"></th>
+					<th scope="col"></th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr th:each="action : ${actions}">
+					<td th:text="${action.id}"></td>
+					<td th:text="${action.event}"></td>
+					<td th:text="${action.date}"></td>
+					<td th:text="${action.carres}"></td>
+					<td><a class="btn btn-success" th:href="@{/action/{id}/delete (id=${action.id})}">Supprimer</a></td>
+					<td><a class="btn btn-success" th:href="@{/action/{id}/update (id=${action.id})}">Modifier</a></td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+	
+</div>
+
+<footer th:replace="fragments/footer :: footer">footer</footer>
+
+<div th:replace="fragments/script :: script">script</div>
+
+</body>
+</html>
