@@ -2,6 +2,7 @@ package com.example.patatapp.ui.controller;
 
 
 import com.example.patatapp.bo.Carre;
+import com.example.patatapp.bo.Error;
 import com.example.patatapp.bo.Plante;
 import com.example.patatapp.service.BllException;
 import com.example.patatapp.service.CarrePlanteService;
@@ -15,7 +16,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.validation.Valid;
 import java.util.List;
@@ -26,17 +26,21 @@ public class PlanteController {
 
     private final PlanteService planteService;
     private final CarrePlanteService carrePlanteService;
+    private final Error error;
 
     @Autowired
-    public PlanteController(PlanteService planteService, CarrePlanteService carrePlanteService) {
+    public PlanteController(PlanteService planteService, CarrePlanteService carrePlanteService, Error error) {
         this.planteService = planteService;
         this.carrePlanteService = carrePlanteService;
+        this.error = error;
     }
 
     @GetMapping("/list")
     public String getAll(Model model) {
         List<Plante> planteList = planteService.findAll();
         model.addAttribute("planteList", planteList);
+        model.addAttribute("errorMessage", error.getErrorMessage());
+        error.setErrorMessage("");
         model.addAttribute("title", "Plante");
         model.addAttribute("classPlanteActive", "active");
         return "plante/plante-list";
@@ -68,13 +72,13 @@ public class PlanteController {
     }
 
     @GetMapping("/{id}/delete")
-    public String delete(@PathVariable Integer id, RedirectAttributes redirectAttributes) {
+    public String delete(@PathVariable Integer id) {
         try {
             planteService.deleteById(id);
             return "redirect:/plante/list";
         } catch (BllException e) {
-//            redirectAttributes.addAttribute("errorMessage", e.getMessage());
-            return "redirect:/plante/list?error";
+            error.setErrorMessage(e.getMessage());
+            return "redirect:/plante/list";
         }
     }
 

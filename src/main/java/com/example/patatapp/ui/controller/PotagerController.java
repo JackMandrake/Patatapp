@@ -114,9 +114,15 @@ public class PotagerController {
     }
 
     @GetMapping("/{potagerId}/overview")
-    public String potagerOverview(@PathVariable Integer potagerId, Model model) throws BllException {
+    public String potagerOverview(@PathVariable Integer potagerId, Model model) {
         List<Potager> potagerList = service.findAll();
-        Potager potager = service.findById(potagerId);
+        Potager potager = null;
+        try {
+            potager = service.findById(potagerId);
+        } catch (BllException e) {
+            error.setErrorMessage(e.getMessage());
+            return "redirect:/potager/list";
+        }
         model.addAttribute("potagerList", potagerList);
         model.addAttribute("potager", potager);
         model.addAttribute("title", "Vue d'ensemble");

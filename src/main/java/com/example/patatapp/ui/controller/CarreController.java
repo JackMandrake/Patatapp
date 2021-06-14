@@ -55,7 +55,8 @@ public class CarreController {
 	@GetMapping("/add")
 	public String showCreateCarreForm(@PathVariable Integer potagerId, Model model) {
 		Carre carre= new Carre();
-		carre.setSurface(0);
+        carre.setName("Mon carré");
+        carre.setSurface(1);
 		carre.setExposition("exposition");
 		carre.setTypeDeSol("typeDeSol");
         model.addAttribute("carre", carre);
@@ -66,11 +67,17 @@ public class CarreController {
 	}
 	
 	@PostMapping("/valider")
-    public String create(@PathVariable Integer potagerId, @Valid Carre carre, BindingResult result) throws BllException {
+    public String create(@PathVariable Integer potagerId, @Valid Carre carre, BindingResult result) {
         if (result.hasErrors()) {
             return "carre/carre-form";
         } else {
-            Potager potager = potagerService.findById(potagerId);
+            Potager potager;
+            try {
+                potager = potagerService.findById(potagerId);
+            } catch (BllException e) {
+                error.setErrorMessage(e.getMessage());
+                return "redirect:/potager/list";
+            }
             try {
                 carreService.create(potager, carre);
             } catch (BllException e) {
@@ -97,12 +104,18 @@ public class CarreController {
     }
 
     @PostMapping("/{id}/valider-update")
-    public String update(@PathVariable Integer potagerId, @PathVariable Integer id, @Valid Carre carre, BindingResult result) throws BllException {
+    public String update(@PathVariable Integer potagerId, @PathVariable Integer id, @Valid Carre carre, BindingResult result) {
         if (result.hasErrors()) {
             return "carre/update-carre-form";
         } else {
             carre.setId(id);
-            Potager potager = potagerService.findById(potagerId);
+            Potager potager = null;
+            try {
+                potager = potagerService.findById(potagerId);
+            } catch (BllException e) {
+                error.setErrorMessage(e.getMessage());
+                return "redirect:/potager/list";
+            }
             carre.setPotager(potager);
             try {
                 carreService.update(carre);
