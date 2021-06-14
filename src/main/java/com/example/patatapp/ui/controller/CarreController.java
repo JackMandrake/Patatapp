@@ -4,6 +4,7 @@ import java.util.List;
 
 import javax.validation.Valid;
 
+import com.example.patatapp.bo.Error;
 import com.example.patatapp.bo.Potager;
 import com.example.patatapp.service.BllException;
 import com.example.patatapp.service.PotagerService;
@@ -27,19 +28,26 @@ public class CarreController {
 
     private final CarreService carreService;
     private final PotagerService potagerService;
+    private final Error error;
 	
 	@Autowired
-	public CarreController(CarreService carreService, PotagerService potagerService) {
+	public CarreController(CarreService carreService, PotagerService potagerService, Error error) {
 		this.carreService = carreService;
         this.potagerService = potagerService;
+        this.error = error;
     }
 
     @GetMapping("/list")
-	public String getAll(@PathVariable Integer potagerId, Model model) throws BllException {
+	public String getAll(@PathVariable Integer potagerId, Model model) {
 		List<Carre> carreList = carreService.findAllByPotagerId(potagerId);
 		model.addAttribute("carreList", carreList);
         model.addAttribute("potagerId", potagerId);
-        model.addAttribute("potagerName", potagerService.findById(potagerId).getName());
+        try {
+            model.addAttribute("potagerName", potagerService.findById(potagerId).getName());
+        } catch (BllException e) {
+            error.setErrorMessage(e.getMessage());
+            return "redirect:/potager/list";
+        }
         model.addAttribute("title", "Carré");
 		return "carre/carre-list";
 	}

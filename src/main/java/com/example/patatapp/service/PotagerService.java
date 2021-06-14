@@ -3,6 +3,7 @@ package com.example.patatapp.service;
 import com.example.patatapp.bo.Potager;
 import com.example.patatapp.dao.PotagerDaoInterface;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -25,8 +26,12 @@ public class PotagerService {
         return dao.save(potager);
     }
 
-    public void deleteById(Integer id) {
-        dao.deleteById(id);
+    public void deleteById(Integer id) throws BllException {
+        try {
+            dao.deleteById(id);
+        } catch (EmptyResultDataAccessException e) {
+            throw new BllException("Le potager avec l'id = " + id + " n'existe pas!");
+        }
     }
 
     public Potager findById(Integer id) throws BllException {

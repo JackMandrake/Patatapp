@@ -33,6 +33,7 @@ public class PotagerController {
     public String getAll(Model model) {
         List<Potager> potagerList = service.findAll();
         model.addAttribute("errorMessage", error.getErrorMessage());
+        error.setErrorMessage("");
         model.addAttribute("potagerList", potagerList);
         model.addAttribute("title", "Potager");
         model.addAttribute("classPotagerActive", "active");
@@ -62,13 +63,23 @@ public class PotagerController {
 
     @GetMapping("/{id}/delete")
     public String delete(@PathVariable Integer id) {
-        service.deleteById(id);
+        try {
+            service.deleteById(id);
+        } catch (BllException e) {
+            error.setErrorMessage(e.getMessage());
+        }
         return "redirect:/potager/list";
     }
 
     @GetMapping("/{id}/update")
-    public String showUpdatePotagerForm(@PathVariable Integer id, Model model) throws BllException {
-        Potager potager = service.findById(id);
+    public String showUpdatePotagerForm(@PathVariable Integer id, Model model) {
+        Potager potager;
+        try {
+            potager = service.findById(id);
+        } catch (BllException e) {
+            error.setErrorMessage(e.getMessage());
+            return "redirect:/potager/list";
+        }
         model.addAttribute("potager", potager);
         model.addAttribute("title", "Potager");
         model.addAttribute("classPotagerActive", "active");
@@ -85,11 +96,10 @@ public class PotagerController {
                 potager.setId(id);
                 potager.setCarreList(potagerFromDb.getCarreList());
                 service.update(potager);
-                return "redirect:/potager/list";
             } catch (BllException e) {
                 error.setErrorMessage(e.getMessage());
-                return "redirect:/potager/list?error";
             }
+            return "redirect:/potager/list";
         }
     }
 
