@@ -1,10 +1,7 @@
 package com.example.patatapp;
 
 import com.example.patatapp.bo.*;
-import com.example.patatapp.dao.CarreDaoInterface;
-import com.example.patatapp.dao.CarrePlanteDaoInterface;
-import com.example.patatapp.dao.PlanteDaoInterface;
-import com.example.patatapp.dao.PotagerDaoInterface;
+import com.example.patatapp.dao.*;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -31,7 +28,8 @@ public class PatatappApplication {
             PotagerDaoInterface potagerDao,
             CarreDaoInterface carreDao,
             PlanteDaoInterface planteDao,
-            CarrePlanteDaoInterface carrePlanteDao) {
+            CarrePlanteDaoInterface carrePlanteDao,
+            ActionDaoInterface actionDao) {
         return args -> {
 
             // Creation des plantes
@@ -131,6 +129,16 @@ public class PatatappApplication {
             carrePlante4.getPlante().getCarrePlanteList().add(carrePlante4);
             carrePlante4.setId(new CarrePlantePK(carre22.getId(), carrePlante4.getPlante().getId()));
             carrePlanteDao.save(carrePlante4);
+
+            // Creation des actions
+            Action action1 = new Action();
+            action1.setEvent("Arroser les plantes");
+            action1.setDate(LocalDate.now());
+            action1.getCarres().add(carre11);
+            action1.getCarres().add(carre22);
+            carre11.getActions().add(action1);
+            carre22.getActions().add(action1);
+            actionDao.save(action1);
         };
     }
 
