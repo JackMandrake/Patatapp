@@ -1,0 +1,1 @@
+INSERT INTO potager (city, name, surface, zip_code) VALUES ('Quimper', 'mon pot', '25', '29000');
