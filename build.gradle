@@ -37,6 +37,7 @@ dependencies {
     providedRuntime 'org.springframework.boot:spring-boot-starter-tomcat'
     implementation group: 'org.json', name: 'json', version: '20210307'
     runtimeOnly 'org.postgresql:postgresql'
+    runtimeOnly 'com.microsoft.sqlserver:mssql-jdbc'
 }
 
 test {
